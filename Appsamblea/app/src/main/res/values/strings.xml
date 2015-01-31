@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Activities -->
+    <string name="perfil">Perfil</string>
+    <string name="modificarperfil">Modificar perfil</string>
+    <string name="proximasasambleas">Próximas asambleas</string>
+    <string name="nuevaasamblea">Nueva asamblea</string>
+    <string name="estadisticas">Estadísticas</string>
+    <string name="nuevogrupo">Nuevo grupo</string>
+    <string name="chats">Chats</string>
+    <!--  -->
+    <string name="app_name">Appsamblea</string>
+    <string name="entrar">Entrar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="title_activity_perfil">Perfil</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_modificar_perfil">Modificar perfil</string>
+    <string name="title_activity_editar_perfil">Editar perfil</string>
+    <string name="title_activity_proximas_asambleas">Proximas asambleas</string>
+    <string name="title_activity_asamblea">Asamblea</string>
+    <string name="title_activity_buscar_asamblea">Buscar asamblea</string>
+    <string name="title_activity_organizacion">Organización</string>
+    <string name="title_activity_grupo">Grupo</string>
+    <string name="title_activity_buscar_organizacion">Buscar organización</string>
+    <string name="title_activity_estadisticas">Estadísticas</string>
+    <string name="title_activity_orden_dia">Orden del día</string>
+    <string name="title_activity_acta">Acta</string>
+    <string name="title_activity_documentos">Documentos</string>
+    <string name="title_activity_ponencia">Ponencia</string>
+    <string name="title_activity_invitar_asistentes">Invitar asistentes</string>
+    <string name="title_activity_turnos_palabra">Turnos de palabra</string>
+
+</resources>
