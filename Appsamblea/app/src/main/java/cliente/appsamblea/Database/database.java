@@ -23,6 +23,8 @@ public class database extends SQLiteOpenHelper{
         bd.execSQL("CREATE TABLE IF NOT EXISTS Usuario ("+
                 "usuario VARCHAR(20), pass VARCHAR(20), PRIMARY KEY (usuario, pass))");
 
+        //Comentario
+        //Otro comentario
         /*
         *
         * Por cada tabla:
