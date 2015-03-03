@@ -20,6 +20,9 @@ public class database extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase bd){
 
+        bd.execSQL("CREATE TABLE IF NOT EXISTS Usuario ("+
+                "usuario VARCHAR(20), pass VARCHAR(20), PRIMARY KEY (usuario, pass))");
+
         /*
         *
         * Por cada tabla:
