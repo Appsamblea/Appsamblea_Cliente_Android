@@ -85,6 +85,10 @@
             android:name=".Activities.CrearVotacion"
             android:label="@string/title_activity_crear_votacion" >
         </activity>
+        <activity
+            android:name=".Activities.AddUser"
+            android:label="@string/title_activity_add_user" >
+        </activity>
     </application>
 
 </manifest>
