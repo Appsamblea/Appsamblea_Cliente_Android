@@ -28,7 +28,6 @@
                 android:id="@+id/userLoginI"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_person"
                 android:contentDescription=""/>
 
             <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
@@ -40,7 +39,6 @@
                 android:id="@+id/passwordLoginI"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_lock"
                 android:contentDescription=""/>
 
             <EditText android:id="@+id/password" android:layout_width="match_parent"
