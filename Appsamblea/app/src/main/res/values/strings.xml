@@ -46,5 +46,8 @@
     <!-- Próximas asambleas -->
     <string name="title_activity_crear_asamblea">Crear asamblea</string>
     <string name="title_activity_buscar_asamblea">Buscar asamblea</string>
+    <string name="title_activity_add_user">AddUser</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
