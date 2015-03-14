@@ -4,9 +4,11 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
     <ImageView
+        android:id="@+id/imagenUsuarioItem"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <TextView
+        android:id="@+id/textoUsuarioItem"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
