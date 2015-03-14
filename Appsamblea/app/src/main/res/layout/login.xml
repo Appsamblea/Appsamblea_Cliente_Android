@@ -21,7 +21,7 @@
                 android:id="@+id/appsambleaI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/
+                android:src="@drawable/ic_appsamblea_letras"
                 android:adjustViewBounds="true"/>
 
             <ImageView
