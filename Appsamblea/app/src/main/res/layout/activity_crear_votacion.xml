@@ -12,8 +12,7 @@
         android:layout_marginBottom="8dp" android:visibility="gone" />
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="false">
+        android:layout_height="match_parent">
 
         <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:orientation="vertical">
@@ -38,10 +37,8 @@
                 <ImageButton
                     android:id="@+id/eliminarSi_CrearVotacion"
                     android:background="@drawable/ic_delete_black_48dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:layout_weight="0.1" />
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -55,11 +52,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.9"/>
-                <Button
+                <ImageButton
                     android:id="@+id/eliminarNo_CrearVotacion"
                     android:background="@drawable/ic_delete_black_48dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -74,18 +71,19 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.9"/>
 
-                <Button
+                <ImageButton
                     android:id="@+id/eliminarAbstencion_CrearVotacion"
                     android:background="@drawable/ic_delete_black_48dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/crearVotacion"
+                android:layout_gravity="center"
                 android:background="@drawable/ic_add_black_48dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
 
         </LinearLayout>
     </ScrollView>
