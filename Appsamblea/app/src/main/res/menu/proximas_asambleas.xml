@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cliente.appsamblea.Activities.ProximasAsambleas">
     <item android:id="@+id/action_add"
-        android:icon="@drawable/ic_3d_rotation_black_18dp"
+        android:icon="@drawable/"
         android:title="@string/title_activity_crear_asamblea"
         app:showAsAction="always"/>
 
