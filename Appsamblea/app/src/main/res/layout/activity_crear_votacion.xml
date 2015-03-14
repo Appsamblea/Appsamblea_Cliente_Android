@@ -78,13 +78,6 @@
                     android:layout_height="32dp"/>
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/crearVotacion"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_add_black_48dp"
-                android:layout_width="32dp"
-                android:layout_height="32dp" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
