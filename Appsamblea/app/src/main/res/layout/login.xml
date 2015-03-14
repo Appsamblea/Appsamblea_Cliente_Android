@@ -21,13 +21,15 @@
                 android:id="@+id/appsambleaI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icono_appsamblea_con_letras"/>
+                android:src="@drawable/icono_appsamblea_con_letras"
+                android:adjustViewBounds="true"/>
 
             <ImageView
                 android:id="@+id/userLoginI"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_person"/>
+                android:src="@drawable/ic_person"
+                android:contentDescription=""/>
 
             <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_email"
@@ -38,7 +40,8 @@
                 android:id="@+id/passwordLoginI"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_lock"/>
+                android:src="@drawable/ic_lock"
+                android:contentDescription=""/>
 
             <EditText android:id="@+id/password" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_password"
@@ -47,9 +50,17 @@
                 android:imeOptions="actionUnspecified" android:inputType="textPassword"
                 android:maxLines="1" android:singleLine="true" />
 
+            <TextView
+                android:text="@string/contraseñaOlvidada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
             <Button android:id="@+id/loginB" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" android:text="@string/entrar"
+                android:background="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
