@@ -1,7 +1,7 @@
 package cliente.appsamblea.ListAdapters;
 
 import cliente.appsamblea.R;
-import cliente.appsamblea.ItemsManagers.itemAsamblea;
+import cliente.appsamblea.ItemsManagers.itemMensaje;
 import java.util.ArrayList;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,21 +16,21 @@ import android.widget.ImageView;
  */
 public class MensajeListAdapter {
     private Context context;
-    protected ArrayList<String> elementos;
-    protected ArrayList<itemAsamblea> items;
+    protected ArrayList<String> referencias;
+    protected ArrayList<itemMensaje> mensajes;
     private int layout;
 
-    /*public MensajeListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
+    public AsambleaListAdapter(Context c, ArrayList<String> e, ArrayList<itemMensaje> litems){
         context = c;
-        elementos = e;
-        layout = l;
+        referencias = e;
+        layout = R.layout.item_mensaje;
         if(e == null){
-            ejerciciosrutina = er;
-            elementos = null;
+            mensajes = litems;
+            referencias = null;
         }
         else{
-            elementos = e;
-            ejerciciosrutina = null;
+            referencias = e;
+            mensajes= null;
         }
     }
 
@@ -41,8 +41,8 @@ public class MensajeListAdapter {
 
     @Override
     public int getCount() {
-        if(elementos!=null )return elementos.size();
-        else return ejerciciosrutina.size();
+        if(referencias!=null )return referencias.size();
+        else return mensajes.size();
     }
 
     @Override
@@ -56,16 +56,12 @@ public class MensajeListAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View row;
-        row = inflater.inflate(layout, parent, false);
-        /*Asginar los atributos a los elementos del layot a partir de su ID
-        Ejemplo:
-            TextView texto;
-        	texto = (TextView) row.findViewById(R.id.nombreElemento);
+    public View getView(int posicion, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(layout, parent, false);
 
-
+        mensajes.get(posicion).setEmisor((TextView)row.findViewById(R.id.emisorMensajeItem));
+        mensajes.get(posicion).setMensaje((TextView)row.findViewById(R.id.textoMensajeItem));
         return (row);
-    }*/
+    }
 }

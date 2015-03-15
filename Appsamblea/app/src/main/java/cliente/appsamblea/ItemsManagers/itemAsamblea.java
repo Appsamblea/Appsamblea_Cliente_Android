@@ -1,8 +1,7 @@
 package cliente.appsamblea.ItemsManagers;
-import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 /**
- * Created by carlillos on 29/01/2015.
+ * Created by carlos on 29/01/2015.
  */
 public class itemAsamblea {
 
@@ -12,6 +11,10 @@ public class itemAsamblea {
     //"@+id/fechaProximaAsamblea"
     private TextView organizacion;
     //"@+id/organizacionProximaAsamblea"
+
+    public itemAsamblea(){
+
+    }
 
     public TextView getAsamblea() {
         return asamblea;
