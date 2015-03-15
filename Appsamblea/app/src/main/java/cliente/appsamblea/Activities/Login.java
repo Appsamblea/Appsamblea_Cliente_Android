@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -81,7 +82,7 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+               attemptLogin();
             }
         });
 
@@ -139,24 +140,28 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
             //Lanzar proximas asambleas
             Intent intent = new Intent(Login.this, ProximasAsambleas.class);
             startActivity(intent);
         }
     }
 
+    /**
+     * Valida un email
+     * @param email email a validar
+     * @return si el email es válido
+     */
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    /**
+     * Método para comprobar que una contraseña sea válida.
+     * @param password la contraseña
+     * @return si la contraseña es válida o no.
+     */
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 0;
     }
 
     /**
