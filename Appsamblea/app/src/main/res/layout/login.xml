@@ -23,30 +23,43 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_appsamblea_letras"
                 android:adjustViewBounds="true"/>
-
-            <ImageView
-                android:id="@+id/userLoginI"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:contentDescription=""/>
+                android:orientation="horizontal">
 
-            <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress" android:maxLines="1"
-                android:singleLine="true" />
+                <ImageView
+                    android:id="@+id/userLoginI"
+                    android:layout_height="24dp"
+                    android:layout_width="24dp"
+                    android:src="@drawable/ic_person_black_48dp"
+                    android:contentDescription=""/>
 
-            <ImageView
-                android:id="@+id/passwordLoginI"
+                <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress" android:maxLines="1"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:contentDescription=""/>
+                android:orientation="horizontal">
 
-            <EditText android:id="@+id/password" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified" android:inputType="textPassword"
-                android:maxLines="1" android:singleLine="true" />
+                <ImageView
+                    android:id="@+id/passwordLoginI"
+                    android:layout_height="24dp"
+                    android:layout_width="24dp"
+                    android:src="@drawable/ic_person_black_48dp"
+                    android:contentDescription=""/>
+
+                <EditText android:id="@+id/password" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_password"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                    android:maxLines="1" android:singleLine="true" />
+                </LinearLayout>
 
             <TextView
                 android:text="@string/contraseñaOlvidada"

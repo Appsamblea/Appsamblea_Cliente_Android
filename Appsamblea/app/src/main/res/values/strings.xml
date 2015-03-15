@@ -50,6 +50,7 @@
     <!--Asamblea-->
     <string name="title_activity_abandonar_asamblea">Abandonar asamblea</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_new_edit_organizacion">Nueva Organización</string>
 
     <!--Login-->
     <string name="prompt_email">Email</string>
