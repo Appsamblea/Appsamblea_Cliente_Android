@@ -5,10 +5,10 @@
     <item android:id="@+id/action_add"
         android:icon="@drawable/ic_add_white_48dp"
         android:title="@string/title_activity_crear_asamblea"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_search"
         android:icon="@drawable/ic_search_white_48dp"
         android:title="@string/title_activity_buscar_asamblea"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 </menu>

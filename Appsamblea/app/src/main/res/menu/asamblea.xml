@@ -1,9 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cliente.appsamblea.Activities.Asamblea">
-    <item android:id="@+id/action_example" android:title="@string/action_example"
-        android:showAsAction="withText|ifRoom" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+
+    <item android:id="@+id/orden_del_dia"
+        android:title="@string/title_activity_orden_dia"/>
+    <item android:id="@+id/turnos_de_palabra"
+        android:title="@string/title_activity_turnos_palabra"/>
+    <item android:id="@+id/crear_votacion"
+        android:title="@string/title_activity_crear_votacion"/>
+    <item android:id="@+id/acta"
+        android:title="@string/title_activity_acta"/>
+    <item android:id="@+id/documentos"
+        android:title="@string/title_activity_documentos"/>
+    <item android:id="@+id/estadisticas"
+        android:title="@string/title_activity_estadisticas"/>
+    <item android:id="@+id/abandonar_asamblea"
+        android:title="@string/title_activity_abandonar_asamblea"/>
+
+
+
+
 </menu>
