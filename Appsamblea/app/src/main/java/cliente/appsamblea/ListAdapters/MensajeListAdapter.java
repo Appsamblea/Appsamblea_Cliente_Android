@@ -20,7 +20,7 @@ public class MensajeListAdapter {
     protected ArrayList<itemAsamblea> items;
     private int layout;
 
-    public MensajeListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
+    /*public MensajeListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
         context = c;
         elementos = e;
         layout = l;
@@ -64,8 +64,8 @@ public class MensajeListAdapter {
         Ejemplo:
             TextView texto;
         	texto = (TextView) row.findViewById(R.id.nombreElemento);
-        */
+
 
         return (row);
-    }
+    }*/
 }

@@ -20,7 +20,7 @@ public class UsuarioListAdapter {
     protected ArrayList<itemAsamblea> items;
     private int layout;
 
-    public UsuarioListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
+    /*public UsuarioListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
         context = c;
         elementos = e;
         layout = l;
@@ -64,8 +64,8 @@ public class UsuarioListAdapter {
         Ejemplo:
             TextView texto;
         	texto = (TextView) row.findViewById(R.id.nombreElemento);
-        */
+
 
         return (row);
-    }
+    }*/
 }
