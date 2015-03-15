@@ -16,21 +16,21 @@ import android.widget.ImageView;
  */
 public class AsambleaListAdapter {
     private Context context;
-    protected ArrayList<String> elementos;
-    protected ArrayList<itemAsamblea> items;
+    protected ArrayList<String> referencias;
+    protected ArrayList<itemAsamblea> asambleas;
     private int layout;
 
-    public AsambleaListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
+    public AsambleaListAdapter(Context c, ArrayList<String> e, ArrayList<itemAsamblea> litems){
         context = c;
-        elementos = e;
-        layout = l;
+        referencias = e;
+        layout = R.layout.item_proximaasamblea;
         if(e == null){
-            ejerciciosrutina = er;
-            elementos = null;
+            asambleas = litems;
+            referencias = null;
         }
         else{
-            elementos = e;
-            ejerciciosrutina = null;
+            referencias = e;
+            asambleas= null;
         }
     }
 
@@ -41,8 +41,8 @@ public class AsambleaListAdapter {
 
     @Override
     public int getCount() {
-        if(elementos!=null )return elementos.size();
-        else return ejerciciosrutina.size();
+        if(referencias!=null )return referencias.size();
+        else return asambleas.size();
     }
 
     @Override
@@ -56,15 +56,13 @@ public class AsambleaListAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View row;
-        row = inflater.inflate(layout, parent, false);
-        /*Asginar los atributos a los elementos del layot a partir de su ID
-        Ejemplo:
-            TextView texto;
-        	texto = (TextView) row.findViewById(R.id.nombreElemento);
-        */
+    public View getView(int posicion, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(layout, parent, false);
+
+        asambleas.get(posicion).setAsamblea((TextView)row.findViewById(R.id.nombreProximaAsamblea));
+        asambleas.get(posicion).setFecha((TextView)row.findViewById(R.id.fechaProximaAsamblea));
+        asambleas.get(posicion).setOrganizacion((TextView)row.findViewById(R.id.organizacionProximaAsamblea));
 
         return (row);
     }
