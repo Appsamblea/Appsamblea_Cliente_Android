@@ -8,7 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <TextView
-        android:id="@+id/textoGrupoItem"
+        android:id="@+id/nombreGrupoItem"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -8,19 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 
 /**
- * Created by carlillos on 29/01/2015.
+ * Created by carlos on 29/01/2015.
  */
-public class MensajeListAdapter {
+public class MensajeListAdapter implements ListAdapter{
     private Context context;
     protected ArrayList<String> referencias;
     protected ArrayList<itemMensaje> mensajes;
     private int layout;
 
-    public AsambleaListAdapter(Context c, ArrayList<String> e, ArrayList<itemMensaje> litems){
+    public MensajeListAdapter(Context c, ArrayList<String> e, ArrayList<itemMensaje> litems){
         context = c;
         referencias = e;
         layout = R.layout.item_mensaje;
@@ -60,8 +61,8 @@ public class MensajeListAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(layout, parent, false);
 
-        mensajes.get(posicion).setEmisor((TextView)row.findViewById(R.id.emisorMensajeItem));
-        mensajes.get(posicion).setMensaje((TextView)row.findViewById(R.id.textoMensajeItem));
+        mensajes.get(posicion).setEmisor((TextView) row.findViewById(R.id.emisorMensajeItem));
+        mensajes.get(posicion).setMensaje((TextView) row.findViewById(R.id.textoMensajeItem));
         return (row);
     }
 }

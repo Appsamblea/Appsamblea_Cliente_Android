@@ -8,13 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 
 /**
- * Created by carlillos on 29/01/2015.
+ * Created by carlos on 29/01/2015.
  */
-public class UsuarioListAdapter {
+public class UsuarioListAdapter implements ListAdapter {
     private Context context;
     protected ArrayList<String> elementos;
     protected ArrayList<itemAsamblea> items;
