@@ -18,6 +18,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import cliente.appsamblea.ListAdapters.AsambleaListAdapter;
+
 import cliente.appsamblea.R;
 
 public class ProximasAsambleas extends ActionBarActivity
@@ -27,6 +29,7 @@ public class ProximasAsambleas extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private AsambleaListAdapter proximasAsambleas;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -41,6 +44,7 @@ public class ProximasAsambleas extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+        //proximasAsambleas.getProximasAsambleas();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(

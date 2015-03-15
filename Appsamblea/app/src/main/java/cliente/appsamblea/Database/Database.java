@@ -4,17 +4,18 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.ArrayList;
 
 /**
- * Created by carlillos on 29/01/2015.
+ * Created by carlos on 29/01/2015.
  */
 
-public class database extends SQLiteOpenHelper{
+public class Database extends SQLiteOpenHelper{
 
     protected ContentValues registro;
 
-    public database(Context c){
-        super(c, "database.db", null, 1);
+    public Database(Context c){
+        super(c, "databaseAppsamblea.db", null, 1);
     }
 
     @Override
@@ -54,6 +55,16 @@ public class database extends SQLiteOpenHelper{
             método
              */
         }
+    }
+
+    public ArrayList<Asamblea> proximasAsambleas(String usuario){
+        ArrayList<Asamblea> resultados = new ArrayList();
+        return resultados;
+    }
+
+    public ArrayList<Asamblea> todasAsambleas(String usuario){
+        ArrayList<Asamblea> resultados = new ArrayList();
+        return resultados;
     }
 
 }
