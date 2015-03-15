@@ -1,9 +1,11 @@
 package cliente.appsamblea.ListAdapters;
 
+import cliente.appsamblea.ItemsManagers.itemGrupo;
 import cliente.appsamblea.R;
-import cliente.appsamblea.ItemsManagers.itemAsamblea;
+import cliente.appsamblea.ItemsManagers.itemUsuario;
 import java.util.ArrayList;
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +19,21 @@ import android.widget.ImageView;
  */
 public class UsuarioListAdapter implements ListAdapter {
     private Context context;
-    protected ArrayList<String> elementos;
-    protected ArrayList<itemAsamblea> items;
+    protected ArrayList<String> referencias;
+    protected ArrayList<itemUsuario> usuarios;
     private int layout;
 
-    /*public UsuarioListAdapter(Context c, int l, ArrayList<String> e, ArrayList<EjercicioRutina> er){
+    public UsuarioListAdapter(Context c, ArrayList<String> e, ArrayList<itemUsuario> litems){
         context = c;
-        elementos = e;
-        layout = l;
+        referencias = e;
+        layout = R.layout.item_usuario;
         if(e == null){
-            ejerciciosrutina = er;
-            elementos = null;
+            usuarios = litems;
+            referencias = null;
         }
         else{
-            elementos = e;
-            ejerciciosrutina = null;
+            referencias = e;
+            usuarios= null;
         }
     }
 
@@ -41,9 +43,19 @@ public class UsuarioListAdapter implements ListAdapter {
     }
 
     @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
     public int getCount() {
-        if(elementos!=null )return elementos.size();
-        else return ejerciciosrutina.size();
+        if(referencias!=null )return referencias.size();
+        else return usuarios.size();
     }
 
     @Override
@@ -57,16 +69,38 @@ public class UsuarioListAdapter implements ListAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View row;
-        row = inflater.inflate(layout, parent, false);
-        /*Asginar los atributos a los elementos del layot a partir de su ID
-        Ejemplo:
-            TextView texto;
-        	texto = (TextView) row.findViewById(R.id.nombreElemento);
+    public View getView(int posicion, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(layout, parent, false);
 
+        usuarios.get(posicion).setImagen((ImageView)row.findViewById(R.id.imagenUsuarioItem));
+        usuarios.get(posicion).setNombre((TextView) row.findViewById(R.id.nombreUsuarioItem));
 
         return (row);
-    }*/
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 }

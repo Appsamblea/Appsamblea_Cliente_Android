@@ -4,6 +4,7 @@ import cliente.appsamblea.R;
 import cliente.appsamblea.ItemsManagers.itemMensaje;
 import java.util.ArrayList;
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,16 @@ public class MensajeListAdapter implements ListAdapter{
     }
 
     @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+
+    }
+
+    @Override
     public int getCount() {
         if(referencias!=null )return referencias.size();
         else return mensajes.size();
@@ -64,5 +75,30 @@ public class MensajeListAdapter implements ListAdapter{
         mensajes.get(posicion).setEmisor((TextView) row.findViewById(R.id.emisorMensajeItem));
         mensajes.get(posicion).setMensaje((TextView) row.findViewById(R.id.textoMensajeItem));
         return (row);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 }
