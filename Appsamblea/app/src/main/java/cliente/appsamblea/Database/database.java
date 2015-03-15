@@ -13,7 +13,7 @@ public class database extends SQLiteOpenHelper{
 
     protected ContentValues registro;
 
-    public BaseDeDatos(Context c){
+    public database(Context c){
         super(c, "database.db", null, 1);
     }
 
