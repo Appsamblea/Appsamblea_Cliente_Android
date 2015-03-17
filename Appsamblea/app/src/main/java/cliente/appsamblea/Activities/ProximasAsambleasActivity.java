@@ -76,6 +76,17 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         ia.setAsamblea(a);
         proximasAsambleas.add(ia);
         //Fin del listado de prueba
+
+        //Se actualizan los TextViews
+        for(itemAsamblea item: proximasAsambleas){
+            item.setNombreAsamblea((TextView)findViewById(R.id.nombreProximaAsamblea));
+            item.getNombreAsamblea().setText(item.getAsamblea().getNombre());
+            item.setFecha((TextView)findViewById(R.id.fechaProximaAsamblea));
+            item.getFecha().setText(item.getAsamblea().getFecha().toString());
+            item.setOrganizacion((TextView)findViewById(R.id.organizacionProximaAsamblea));
+            item.getOrganizacion().setText(item.getAsamblea().getOrganizacion());
+        }
+
         listView = (ListView) findViewById(R.id.listaProximasAsambleas);
         adapter = new AsambleaListAdapter(this ,proximasAsambleas);
         listView.setAdapter(adapter);
