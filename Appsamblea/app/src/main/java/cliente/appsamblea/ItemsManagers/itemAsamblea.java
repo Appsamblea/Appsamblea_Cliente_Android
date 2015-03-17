@@ -1,27 +1,38 @@
 package cliente.appsamblea.ItemsManagers;
 import android.widget.TextView;
+import cliente.appsamblea.Database.Asamblea;
+
 /**
  * Created by carlos on 29/01/2015.
  */
 public class itemAsamblea {
 
-    private TextView asamblea;
+    private TextView nombreAsamblea;
     //@+id/nombreProximaAsamblea"
     private TextView fecha;
     //"@+id/fechaProximaAsamblea"
     private TextView organizacion;
     //"@+id/organizacionProximaAsamblea"
+    private Asamblea asamblea;
 
-    public itemAsamblea(){
-
+    public itemAsamblea(Asamblea a){
+        asamblea = a;
     }
 
-    public TextView getAsamblea() {
+    public Asamblea getAsamblea() {
         return asamblea;
     }
 
-    public void setAsamblea(TextView asamblea) {
+    public void setAsamblea(Asamblea asamblea) {
         this.asamblea = asamblea;
+    }
+
+    public TextView getNombreAsamblea() {
+        return nombreAsamblea;
+    }
+
+    public void setNombreAsamblea(TextView nombreAsamblea) {
+        this.nombreAsamblea = nombreAsamblea;
     }
 
     public TextView getFecha() {

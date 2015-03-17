@@ -15,11 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import cliente.appsamblea.ListAdapters.AsambleaListAdapter;
-
+import cliente.appsamblea.Database.Asamblea;
 import cliente.appsamblea.R;
 
 public class ProximasAsambleas extends ActionBarActivity
@@ -29,7 +34,9 @@ public class ProximasAsambleas extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private AsambleaListAdapter proximasAsambleas;
+    private ArrayList<Asamblea> proximasAsambleas;
+    private AsambleaListAdapter adapter;
+    private ListView listView;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -44,12 +51,27 @@ public class ProximasAsambleas extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
-        //proximasAsambleas.getProximasAsambleas();
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        adapter = new AsambleaListAdapter();
+        //proximasAsambleas.getProximasAsambleas();
+        //Asignación del listView y su listener:
+        listView = findViewById(R.id.listaProximasAsambleas);
+        listView.setAdapter(this.adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                /*Toast.makeText(getApplicationContext(),
+                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                        .show();*/
+                Toast.makeText(getApplicationContext(), proximasAsambleas.get(position),Toast.LENGTH_LONG);
+            }
+        });
     }
 
     @Override

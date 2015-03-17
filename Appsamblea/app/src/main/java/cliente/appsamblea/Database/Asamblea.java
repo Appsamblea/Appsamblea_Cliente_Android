@@ -26,8 +26,17 @@ public class Asamblea {
     private String creador;
     private String organizacion;
     private String participantes;
+    private long id;
 
     public Asamblea() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
