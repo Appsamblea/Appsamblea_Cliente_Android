@@ -5,18 +5,6 @@ import java.util.Date;
  * Created by carlos on 15/03/15.
  */
 public class Asamblea {
-    /*
-    nombre = models.CharField(max_length = 256)
-	fecha = models.DateField()
-	lugar = models.CharField(max_length = 256)
-	descripcion = models.TextField()
-	es_abierta = models.BooleanField(default = True)
-	url_streaming = models.URLField(null = True)
-	urlasamblea = models.URLField(null = True)
-	usuario = models.ForeignKey(Usuario, related_name="asamblea_usuario")
-	organizacion = models.ForeignKey(Organizacion)
-	participantes = models.ManyToManyField(Usuario, through='Participa')
-    * */
     private String nombre;
     private Date fecha;
     private String lugar;

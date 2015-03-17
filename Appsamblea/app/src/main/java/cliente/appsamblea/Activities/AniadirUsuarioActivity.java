@@ -14,7 +14,7 @@ import java.util.List;
 
 import cliente.appsamblea.R;
 
-public class AddUser extends ActionBarActivity {
+public class AniadirUsuarioActivity extends ActionBarActivity {
     private ListView listView;
     ArrayAdapter<Integer> adapter;
 

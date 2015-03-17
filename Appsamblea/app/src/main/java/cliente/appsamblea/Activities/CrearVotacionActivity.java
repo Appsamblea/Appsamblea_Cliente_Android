@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import cliente.appsamblea.R;
 
-public class CrearVotacion extends ActionBarActivity {
+public class CrearVotacionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import cliente.appsamblea.R;
 
-public class NewEditOrganizacion extends ActionBarActivity {
+public class EditarOrganizacionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

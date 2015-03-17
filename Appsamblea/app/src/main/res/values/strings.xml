@@ -47,12 +47,11 @@
     <string name="title_activity_crear_asamblea">Crear asamblea</string>
     <string name="title_activity_add_user">AddUser</string>
 
-    <!--Asamblea-->
     <string name="title_activity_abandonar_asamblea">Abandonar asamblea</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_new_edit_organizacion">Nueva Organización</string>
 
-    <!--Login-->
+    <!--LoginActivity-->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Entra o regístrate</string>

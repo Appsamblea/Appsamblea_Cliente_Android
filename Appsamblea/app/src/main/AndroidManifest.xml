@@ -13,84 +13,84 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.Login"
+            android:name=".Activities.LoginActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Perfil"
+            android:name=".Activities.PerfilActivity"
             android:label="@string/title_activity_perfil" >
         </activity>
         <activity
-            android:name=".Activities.ModificarPerfil"
+            android:name=".Activities.ModificarPerfilActivity"
             android:label="@string/title_activity_modificar_perfil" >
         </activity>
         <activity
-            android:name=".Activities.EditarPerfil"
+            android:name=".Activities.EditarPerfilActivity"
             android:label="@string/title_activity_editar_perfil" >
         </activity>
         <activity
-            android:name=".Activities.ProximasAsambleas"
+            android:name=".Activities.ProximasAsambleasActivity"
             android:label="@string/title_activity_proximas_asambleas" >
         </activity>
         <activity
-            android:name=".Activities.Asamblea"
+            android:name=".Activities.AsambleaActivity"
             android:label="@string/title_activity_asamblea" >
         </activity>
         <activity
-            android:name=".Activities.BuscarAsamblea"
+            android:name=".Activities.BuscarAsambleaActivity"
             android:label="@string/title_activity_buscar_asamblea" >
         </activity>
         <activity
-            android:name=".Activities.Organizacion"
+            android:name=".Activities.OrganizacionActivity"
             android:label="@string/title_activity_organizacion" >
         </activity>
         <activity
-            android:name=".Activities.Grupo"
+            android:name=".Activities.GrupoActivity"
             android:label="@string/title_activity_grupo" >
         </activity>
         <activity
-            android:name=".Activities.BuscarOrganizacion"
+            android:name=".Activities.BuscarOrganizacionActivity"
             android:label="@string/title_activity_buscar_organizacion" >
         </activity>
         <activity
-            android:name=".Activities.Estadisticas"
+            android:name=".Activities.EstadisticasActivity"
             android:label="@string/title_activity_estadisticas" >
         </activity>
         <activity
-            android:name=".Activities.OrdenDia"
+            android:name=".Activities.OrdenDiaActivity"
             android:label="@string/title_activity_orden_dia" >
         </activity>
         <activity
-            android:name=".Activities.Acta"
+            android:name=".Activities.ActaActivity"
             android:label="@string/title_activity_acta" >
         </activity>
         <activity
-            android:name=".Activities.Documentos"
+            android:name=".Activities.DocumentosActivity"
             android:label="@string/title_activity_documentos" >
         </activity>
         <activity
-            android:name=".Activities.Ponencia"
+            android:name=".Activities.PonenciaActivity"
             android:label="@string/title_activity_ponencia" >
         </activity>
         <activity
-            android:name=".Activities.InvitarAsistentes"
+            android:name=".Activities.InvitarAsistentesActivity"
             android:label="@string/title_activity_invitar_asistentes" >
         </activity>
         <activity
-            android:name=".Activities.TurnosPalabra"
+            android:name=".Activities.TurnosPalabraActivity"
             android:label="@string/title_activity_turnos_palabra" >
         </activity>
         <activity
-            android:name=".Activities.CrearVotacion"
+            android:name=".Activities.CrearVotacionActivity"
             android:label="@string/title_activity_crear_votacion" >
         </activity>
         <activity
-            android:name=".Activities.AddUser"
+            android:name=".Activities.AniadirUsuarioActivity"
             android:label="@string/title_activity_add_user" >
         </activity>
     </application>
