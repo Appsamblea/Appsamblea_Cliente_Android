@@ -18,21 +18,23 @@ import android.widget.ImageView;
  */
 public class AsambleaListAdapter implements ListAdapter {
     private Context context;
-    protected ArrayList<String> referencias;
+    //protected ArrayList<Long> referencias;
     protected ArrayList<itemAsamblea> asambleas;
     private int layout;
 
-    public AsambleaListAdapter(Context c, ArrayList<String> e, ArrayList<itemAsamblea> litems){
+    public AsambleaListAdapter(Context c, ArrayList<itemAsamblea> litems){
         context = c;
-        referencias = e;
+        //referencias = e;
+
         layout = R.layout.item_proximaasamblea;
-        if(e == null){
-            asambleas = litems;
-            referencias = null;
+        if(litems == null){
+            asambleas = null;
+            //referencias = null;
         }
         else{
-            referencias = e;
-            asambleas= null;
+            for(itemAsamblea item: litems){
+                asambleas.add(item);
+            }
         }
     }
 
@@ -53,8 +55,7 @@ public class AsambleaListAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        if(referencias!=null )return referencias.size();
-        else return asambleas.size();
+        return asambleas.size();
     }
 
     @Override
@@ -72,7 +73,7 @@ public class AsambleaListAdapter implements ListAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(layout, parent, false);
 
-        asambleas.get(posicion).setAsamblea((TextView)row.findViewById(R.id.nombreProximaAsamblea));
+        asambleas.get(posicion).setNombreAsamblea((TextView)row.findViewById(R.id.nombreProximaAsamblea));
         asambleas.get(posicion).setFecha((TextView) row.findViewById(R.id.fechaProximaAsamblea));
         asambleas.get(posicion).setOrganizacion((TextView) row.findViewById(R.id.organizacionProximaAsamblea));
 
