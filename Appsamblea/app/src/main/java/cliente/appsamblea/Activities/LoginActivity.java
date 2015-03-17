@@ -1,16 +1,12 @@
 package cliente.appsamblea.Activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -25,21 +21,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cliente.appsamblea.R;
-import android.content.Intent;
 
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     /**
      * Credenciales falsas temporales.
-     * TODO: cambiarlas por las credenciales del servidor
+     * TODO eliminarlas cuando esté la comunicación con el servidor.
      */
-    private static final String[] CREDENCIALES_FALSAS = new String[]{
-            "ejemplo@appsamblea.com:1234"
-    };
+    private Map <String, String> credencialesFalsas = new HashMap <String, String>();
 
 
     // Elementos de la UI
@@ -50,19 +45,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //TODO eliminar cuando esté la comunicación con el servidor.
+        credencialesFalsas.put("prueba@appsamblea.com", "1234");
+        credencialesFalsas.put("a@a.com", "1111");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         // Montar el formulario de login.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        getLoaderManager().initLoader(0, null, this);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    login();
                     return true;
                 }
                 return false;
@@ -73,7 +73,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-               attemptLogin();
+               login();
             }
         });
 
@@ -81,52 +81,52 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * Método para identificarse.
+     * Si hay errores se muestran al usuario.
+     * Si no hay errores se pasa a la pantalla de "próximas asambleas".
      */
-    public void attemptLogin() {
-
-        // Reset errors.
+    public void login() {
+        // Eliminar errores
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
+        // Guardar valores de entrada.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
+        boolean cancelar = false;
+        View llamarAtencion = null;
 
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        // Ver si la contraseña es válida.
+        if (!TextUtils.isEmpty(password) && !validarPassword(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
+            llamarAtencion = mPasswordView;
+            cancelar = true;
         }
 
-        // Check for a valid email address.
+        // Ver si el email es válido
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
+            llamarAtencion = mEmailView;
+            cancelar = true;
+        } else if (!validarEmail(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
+            llamarAtencion = mEmailView;
+            cancelar = true;
         }
 
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
+        //Ver si la contraseña es buena
+        if (!comprobarPassword(email, password)){
+            // Los datos introducidos no son válidos.
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            llamarAtencion = mPasswordView;
+            cancelar = true;
+        }
+
+        if (cancelar) {
+            // Ha habido un error. Se muestra el error y se cambia llama la atención del usuario.
+            llamarAtencion.requestFocus();
         } else {
             //Lanzar proximas asambleas
             Intent intent = new Intent(LoginActivity.this, ProximasAsambleasActivity.class);
@@ -134,60 +134,47 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     }
 
+
+
     /**
      * Valida un email
      * @param email email a validar
      * @return si el email es válido
      */
-    private boolean isEmailValid(String email) {
+    private boolean validarEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    /**
+     * Comprueba que una contraseña se corresponda a un email.
+     * @param email email a comprobar
+     * @param password contraseña a comprobar
+     * @return si la contraseña corresponde al email.
+     */
+    private boolean comprobarPassword(String email, String password) {
+        //TODO conexión con el servidor, ahora mismo solo comprueba los datos tontos.
+        if (credencialesFalsas.containsKey(email)){
+            if (credencialesFalsas.get(email).equals(password)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+    }
     /**
      * Método para comprobar que una contraseña sea válida.
      * @param password la contraseña
      * @return si la contraseña es válida o no.
      */
-    private boolean isPasswordValid(String password) {
+    private boolean validarPassword(String password) {
         return password.length() > 0;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    public void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mFormularioLoginView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mFormularioLoginView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mFormularioLoginView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mFormularioLoginView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
-
+    //TODO investigar qué hace todo lo que hay de aquí para abajo.
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
