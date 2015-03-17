@@ -147,7 +147,7 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((ProximasAsambleas) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+            ((ProximasAsambleasActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 
