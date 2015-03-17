@@ -15,9 +15,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import cliente.appsamblea.Database.Asamblea;
+import cliente.appsamblea.ItemsManagers.itemAsamblea;
 import cliente.appsamblea.ListAdapters.AsambleaListAdapter;
 
 import cliente.appsamblea.R;
@@ -29,7 +36,9 @@ public class ProximasAsambleasActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private AsambleaListAdapter proximasAsambleas;
+    private ListView listView;
+    private AsambleaListAdapter adapter;
+    private ArrayList<itemAsamblea> proximasAsambleas;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -41,10 +50,49 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proximas_asambleas);
 
+        /*
+        * proximasAsambleas = LISTA DE LAS PRÓXIMAS ASAMBLEAS OBTENIDA DE LA BASE DE DATOS*/
+
+        /**/
+        //Listado de prueba
+
+        Asamblea a = new Asamblea();
+        a.setCreador("Un creador");
+        a.setId(0);
+        a.setNombre("Asamblea 1");
+        itemAsamblea ia = new itemAsamblea(a);
+        //ia.setAsamblea(a);
+        proximasAsambleas.add(ia);
+        a.setCreador("Otro creador");
+        a.setId(4);
+        a.setNombre("Asamblea 4");
+        ia.setAsamblea(a);
+        proximasAsambleas.add(ia);
+        a.setCreador("Y otro creador");
+        a.setId(6);
+        a.setNombre("Asamblea 6");
+        ia.setAsamblea(a);
+        proximasAsambleas.add(ia);
+        //Fin del listado de prueba
+        listView = (ListView) findViewById(R.id.listaProximasAsambleas);
+        adapter = new AsambleaListAdapter(this ,proximasAsambleas);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        proximasAsambleas.get(position).getAsamblea().getNombre(), Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
-        //proximasAsambleas.getProximasAsambleas();
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(

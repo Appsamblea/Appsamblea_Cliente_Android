@@ -33,7 +33,7 @@
                     android:id="@+id/userLoginI"
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/ic_person_black_48dp"
+                    android:src="@drawable/ic_https_black_48dp"
                     android:contentDescription=""/>
 
                 <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
