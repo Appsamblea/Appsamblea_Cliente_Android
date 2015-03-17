@@ -24,6 +24,7 @@ public class AsambleaListAdapter implements ListAdapter {
 
     public AsambleaListAdapter(Context c, ArrayList<itemAsamblea> litems){
         context = c;
+        asambleas = new ArrayList<>();
         //referencias = e;
 
         layout = R.layout.item_proximaasamblea;
@@ -87,7 +88,7 @@ public class AsambleaListAdapter implements ListAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 0;
+        return 1;
     }
 
     @Override

@@ -56,6 +56,8 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         /**/
         //Listado de prueba
 
+        proximasAsambleas = new ArrayList <itemAsamblea>();
+
         Asamblea a = new Asamblea();
         a.setCreador("Un creador");
         a.setId(0);
