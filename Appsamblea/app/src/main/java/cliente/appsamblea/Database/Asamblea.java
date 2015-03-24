@@ -25,15 +25,17 @@ public class Asamblea {
     }
 
     /*
-     * //TODO este método tendrá que ser cambiado cuando el creador se cambie por un usuario.
+     * //TODO este método tendrá que ser cambiado cuando la organizacion se cambie por una clase.
      * Constructor muy básico.
      * @param nombre el nombre de la asamblea.
-     * @param nombreCreador el nombre del creador de la asamblea.
+     * @param organizacion el nombre de la organizacion que convocó la asamblea.
+     * @param fecha la fecha en la que se celebrará la asamblea.
      * @param id el id de la asamblea.
      */
-    public Asamblea (String nombre, String nombreCreador, int id){
+    public Asamblea (String nombre, String organizacion, Date fecha, int id){
         this.nombre = nombre;
-        this.creador = nombreCreador;
+        this.organizacion = organizacion;
+        this.fecha = fecha;
         this.id = id;
     }
 

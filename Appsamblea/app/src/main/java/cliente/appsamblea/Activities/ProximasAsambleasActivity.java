@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import cliente.appsamblea.Database.Asamblea;
 import cliente.appsamblea.ItemsManagers.itemAsamblea;
@@ -61,9 +62,10 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
         //Crear 3 asambleas de prueba
         Asamblea pruebaAsamblea1, pruebaAsamblea2, pruebaAsamblea3;
-        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Creador 1", 1);
-        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Creador 2", 2);
-        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Creador 3", 3);
+        Date fecha = new Date();
+        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Organizacion 1", fecha, 0);
+        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Organizacion 2", fecha, 1);
+        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Organizacion 3", fecha, 2);
 
         //Crear 3 items de asamblea
         itemAsamblea ia1, ia2, ia3;

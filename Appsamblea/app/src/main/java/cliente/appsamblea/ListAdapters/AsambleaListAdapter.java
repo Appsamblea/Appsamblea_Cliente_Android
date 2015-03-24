@@ -1,17 +1,18 @@
 package cliente.appsamblea.ListAdapters;
 
-import cliente.appsamblea.R;
-import cliente.appsamblea.ItemsManagers.itemAsamblea;
-import java.util.ArrayList;
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.ImageView;
+
+import java.util.ArrayList;
+
+import cliente.appsamblea.ItemsManagers.itemAsamblea;
+import cliente.appsamblea.R;
 
 /**
  * Created by carlos on 29/01/2015.
@@ -19,22 +20,28 @@ import android.widget.ImageView;
 public class AsambleaListAdapter implements ListAdapter {
     private Context context;
     //protected ArrayList<Long> referencias;
-    protected ArrayList<itemAsamblea> asambleas;
+    protected ArrayList<itemAsamblea> listaAsambleas;
     private int layout;
+    private static LayoutInflater inflater = null;
 
     public AsambleaListAdapter(Context c, ArrayList<itemAsamblea> litems){
+        //Asignar argumentos
         context = c;
-        asambleas = new ArrayList<>();
-        //referencias = e;
+        listaAsambleas = new ArrayList<>();
 
         layout = R.layout.item_proximaasamblea;
-        if(litems == null){
-            asambleas = null;
-            //referencias = null;
+
+        //Llamar a al layout xml externo
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+        //Controlar la lista de itemAsamblea y copiarla.
+        if(litems == null || litems.size() == 0){
+            listaAsambleas = null;
         }
         else{
             for(itemAsamblea item: litems){
-                asambleas.add(item);
+                listaAsambleas.add(item);
             }
         }
     }
@@ -56,7 +63,7 @@ public class AsambleaListAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return asambleas.size();
+        return listaAsambleas.size();
     }
 
     @Override
@@ -71,14 +78,38 @@ public class AsambleaListAdapter implements ListAdapter {
 
     @Override
     public View getView(int posicion, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(layout, parent, false);
 
-        asambleas.get(posicion).setNombreAsamblea((TextView)row.findViewById(R.id.nombreProximaAsamblea));
-        asambleas.get(posicion).setFecha((TextView) row.findViewById(R.id.fechaProximaAsamblea));
-        asambleas.get(posicion).setOrganizacion((TextView) row.findViewById(R.id.organizacionProximaAsamblea));
+        itemAsamblea item;
+        View vi = convertView;
 
-        return (row);
+        //Comprobar si convertView es nulo
+        if (convertView == null){
+            Log.i("AsambleaListAdapter", "convertView es null en " + posicion);
+            //Añadir el xml del ítem. Se hace con el inflater.
+            vi = inflater.inflate(R.layout.item_proximaasamblea, null);
+
+            //Rellenar la vista
+            item = listaAsambleas.get(posicion);//Rellenar el ítem.
+            item.setNombreAsamblea((TextView)vi.findViewById(R.id.nombreProximaAsamblea));
+            item.setFecha((TextView) vi.findViewById(R.id.fechaProximaAsamblea));
+            item.setOrganizacion((TextView) vi.findViewById(R.id.organizacionProximaAsamblea));
+
+            //Darle layout a la vista
+            vi.setTag(item);
+        }else{
+            Log.i("AsambleaListAdapter", "convertView no es null en " + posicion);
+            item = (itemAsamblea)vi.getTag();
+        }
+
+        if (listaAsambleas.size() <= 0){
+            Log.i ("AsambleaListAdapter", "Sin datos");
+        }
+        else{
+            //Rellenar la vista
+            item.actualizarValores();
+        }
+
+        return (vi);
     }
 
     @Override

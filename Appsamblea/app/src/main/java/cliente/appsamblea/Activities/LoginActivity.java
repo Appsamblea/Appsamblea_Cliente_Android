@@ -48,7 +48,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
-        credencialesFalsas.put("a@a.com", "1111");
+        credencialesFalsas.put("a@a.com", "q");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);

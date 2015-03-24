@@ -34,7 +34,6 @@ public class itemAsamblea {
     public void setNombreAsamblea(TextView nombreAsamblea) {
         this.nombreAsamblea = nombreAsamblea;
     }
-
     public TextView getFecha() {
         return fecha;
     }
@@ -43,13 +42,17 @@ public class itemAsamblea {
         this.fecha = fecha;
     }
 
-
-
     public TextView getOrganizacion() {
         return organizacion;
     }
 
     public void setOrganizacion(TextView organizacion) {
         this.organizacion = organizacion;
+    }
+
+    public void actualizarValores (){
+        nombreAsamblea.setText(asamblea.getNombre());
+        fecha.setText(asamblea.getFecha().toString());
+        organizacion.setText(asamblea.getOrganizacion());
     }
 }
