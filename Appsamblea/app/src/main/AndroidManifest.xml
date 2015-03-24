@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cliente.appsamblea" >
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -13,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
@@ -22,75 +21,75 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.PerfilActivity"
+            android:name=".activities.PerfilActivity"
             android:label="@string/title_activity_perfil" >
         </activity>
         <activity
-            android:name=".Activities.ModificarPerfilActivity"
+            android:name=".activities.ModificarPerfilActivity"
             android:label="@string/title_activity_modificar_perfil" >
         </activity>
         <activity
-            android:name=".Activities.EditarPerfilActivity"
+            android:name=".activities.EditarPerfilActivity"
             android:label="@string/title_activity_editar_perfil" >
         </activity>
         <activity
-            android:name=".Activities.ProximasAsambleasActivity"
+            android:name=".activities.ProximasAsambleasActivity"
             android:label="@string/title_activity_proximas_asambleas" >
         </activity>
         <activity
-            android:name=".Activities.AsambleaActivity"
+            android:name=".activities.AsambleaActivity"
             android:label="@string/title_activity_asamblea" >
         </activity>
         <activity
-            android:name=".Activities.BuscarAsambleaActivity"
+            android:name=".activities.BuscarAsambleaActivity"
             android:label="@string/title_activity_buscar_asamblea" >
         </activity>
         <activity
-            android:name=".Activities.OrganizacionActivity"
+            android:name=".activities.OrganizacionActivity"
             android:label="@string/title_activity_organizacion" >
         </activity>
         <activity
-            android:name=".Activities.GrupoActivity"
+            android:name=".activities.GrupoActivity"
             android:label="@string/title_activity_grupo" >
         </activity>
         <activity
-            android:name=".Activities.BuscarOrganizacionActivity"
+            android:name=".activities.BuscarOrganizacionActivity"
             android:label="@string/title_activity_buscar_organizacion" >
         </activity>
         <activity
-            android:name=".Activities.EstadisticasActivity"
+            android:name=".activities.EstadisticasActivity"
             android:label="@string/title_activity_estadisticas" >
         </activity>
         <activity
-            android:name=".Activities.OrdenDiaActivity"
+            android:name=".activities.OrdenDiaActivity"
             android:label="@string/title_activity_orden_dia" >
         </activity>
         <activity
-            android:name=".Activities.ActaActivity"
+            android:name=".activities.ActaActivity"
             android:label="@string/title_activity_acta" >
         </activity>
         <activity
-            android:name=".Activities.DocumentosActivity"
+            android:name=".activities.DocumentosActivity"
             android:label="@string/title_activity_documentos" >
         </activity>
         <activity
-            android:name=".Activities.PonenciaActivity"
+            android:name=".activities.PonenciaActivity"
             android:label="@string/title_activity_ponencia" >
         </activity>
         <activity
-            android:name=".Activities.InvitarAsistentesActivity"
+            android:name=".activities.InvitarAsistentesActivity"
             android:label="@string/title_activity_invitar_asistentes" >
         </activity>
         <activity
-            android:name=".Activities.TurnosPalabraActivity"
+            android:name=".activities.TurnosPalabraActivity"
             android:label="@string/title_activity_turnos_palabra" >
         </activity>
         <activity
-            android:name=".Activities.CrearVotacionActivity"
+            android:name=".activities.CrearVotacionActivity"
             android:label="@string/title_activity_crear_votacion" >
         </activity>
         <activity
-            android:name=".Activities.AniadirUsuarioActivity"
+            android:name=".activities.AniadirUsuarioActivity"
             android:label="@string/title_activity_add_user" >
         </activity>
     </application>
