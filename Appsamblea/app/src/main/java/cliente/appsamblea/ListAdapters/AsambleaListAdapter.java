@@ -102,6 +102,7 @@ public class AsambleaListAdapter implements ListAdapter {
         }
 
         if (listaAsambleas.size() <= 0){
+            //TODO cambiarlo por un mensaje de error del diccionario
             Log.i ("AsambleaListAdapter", "Sin datos");
         }
         else{
