@@ -11,12 +11,30 @@ public class Asamblea {
     private String descripcion;
     private boolean es_abierta;
     private String url_streaming;
+    //TODO el creador deberá de ser un usuario.
     private String creador;
     private String organizacion;
     private String participantes;
     private long id;
 
+    /**
+     * Constructor vacío
+     */
     public Asamblea() {
+
+    }
+
+    /*
+     * //TODO este método tendrá que ser cambiado cuando el creador se cambie por un usuario.
+     * Constructor muy básico.
+     * @param nombre el nombre de la asamblea.
+     * @param nombreCreador el nombre del creador de la asamblea.
+     * @param id el id de la asamblea.
+     */
+    public Asamblea (String nombre, String nombreCreador, int id){
+        this.nombre = nombre;
+        this.creador = nombreCreador;
+        this.id = id;
     }
 
     public long getId() {

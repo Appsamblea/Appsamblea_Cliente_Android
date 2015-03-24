@@ -58,33 +58,34 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
         proximasAsambleas = new ArrayList <itemAsamblea>();
 
-        Asamblea a = new Asamblea();
-        a.setCreador("Un creador");
-        a.setId(0);
-        a.setNombre("Asamblea 1");
-        itemAsamblea ia = new itemAsamblea(a);
-        //ia.setAsamblea(a);
-        proximasAsambleas.add(ia);
-        a.setCreador("Otro creador");
-        a.setId(4);
-        a.setNombre("Asamblea 4");
-        ia.setAsamblea(a);
-        proximasAsambleas.add(ia);
-        a.setCreador("Y otro creador");
-        a.setId(6);
-        a.setNombre("Asamblea 6");
-        ia.setAsamblea(a);
-        proximasAsambleas.add(ia);
-        //Fin del listado de prueba
+
+        //Crear 3 asambleas de prueba
+        Asamblea pruebaAsamblea1, pruebaAsamblea2, pruebaAsamblea3;
+        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Creador 1", 1);
+        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Creador 2", 2);
+        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Creador 3", 3);
+
+        //Crear 3 items de asamblea
+        itemAsamblea ia1, ia2, ia3;
+        ia1 = new itemAsamblea(pruebaAsamblea1);
+        ia2 = new itemAsamblea(pruebaAsamblea2);
+        ia3 = new itemAsamblea(pruebaAsamblea3);
+
+        //Añadir los items a la lista de asambleas
+        proximasAsambleas.add (ia1);
+        proximasAsambleas.add (ia2);
+        proximasAsambleas.add (ia3);
+
+
 
         //Se actualizan los TextViews
         for(itemAsamblea item: proximasAsambleas){
-            item.setNombreAsamblea((TextView)findViewById(R.id.nombreProximaAsamblea));
+            /*item.setNombreAsamblea((TextView)findViewById(R.id.nombreProximaAsamblea));
             item.getNombreAsamblea().setText(item.getAsamblea().getNombre());
             item.setFecha((TextView)findViewById(R.id.fechaProximaAsamblea));
             item.getFecha().setText(item.getAsamblea().getFecha().toString());
             item.setOrganizacion((TextView)findViewById(R.id.organizacionProximaAsamblea));
-            item.getOrganizacion().setText(item.getAsamblea().getOrganizacion());
+            item.getOrganizacion().setText(item.getAsamblea().getOrganizacion());*/
         }
 
         listView = (ListView) findViewById(R.id.listaProximasAsambleas);
