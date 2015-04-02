@@ -1,4 +1,4 @@
-package cliente.appsamblea.Application;
+package cliente.appsamblea.application;
 import android.app.Application;
 import java.util.HashMap;
 

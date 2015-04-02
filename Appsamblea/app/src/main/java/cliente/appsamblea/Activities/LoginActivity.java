@@ -34,21 +34,26 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      * Credenciales falsas temporales.
      * TODO eliminarlas cuando esté la comunicación con el servidor.
      */
-    private Map <String, String> credencialesFalsas = new HashMap <String, String>();
+    private Map <String, String> credencialesFalsas = new HashMap < >();
 
 
     // Elementos de la UI
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mFormularioLoginView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
         credencialesFalsas.put("a@a.com", "q");
+        //TODO también eliminar cuando esté la comunicación con el servidor.
+        //Ver si han venido extras en el intent
+        Bundle extras = getIntent().getExtras();
+
+        //Crear un nuevo usuario con la información que ha llegado.
+        if (extras != null) {
+            aniadirCredencialFalsa(getIntent().getStringExtra("email"), getIntent().getStringExtra("password"));
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -87,9 +92,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(intent);
             }
         });
-
-        mFormularioLoginView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     /**
@@ -165,12 +167,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private boolean comprobarPassword(String email, String password) {
         //TODO conexión con el servidor, ahora mismo solo comprueba los datos tontos.
         if (credencialesFalsas.containsKey(email)){
-            if (credencialesFalsas.get(email).equals(password)){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return credencialesFalsas.get(email).equals(password);
         }else{
             return false;
         }
@@ -203,9 +200,18 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+    /**
+     * Añade unas credenciales falsas desde otra actividad.
+     * @param email nombre del usuario.
+     * @param password Contraseña del usuario.
+     */
+    private void aniadirCredencialFalsa (String email, String password){
+        credencialesFalsas.put (email, password);
+    }
+
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<String>();
+        List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             emails.add(cursor.getString(ProfileQuery.ADDRESS));
@@ -227,14 +233,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         };
 
         int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(LoginActivity.this,
+                new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
