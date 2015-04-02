@@ -1,4 +1,4 @@
-package cliente.appsamblea.Activities;
+package cliente.appsamblea.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;

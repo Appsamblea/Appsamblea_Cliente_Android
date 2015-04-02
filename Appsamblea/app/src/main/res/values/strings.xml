@@ -56,10 +56,17 @@
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Entra o regístrate</string>
     <string name="action_sign_in_short">Entrar</string>
+    <string name="register">Regístrate</string>
 
     <string name="error_invalid_email">Dirección de correo no válida</string>
     <string name="error_invalid_password">Contraseña demasiado corta</string>
     <string name="error_incorrect_password">Contraseña incorrecta</string>
     <string name="error_field_required">Debes rellenar este campo</string>
+    <string name="title_activity_registro">RegistroActivity</string>
+
+    <!--Registro-->
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="confirm_registration">Registrar</string>
+
 
 </resources>

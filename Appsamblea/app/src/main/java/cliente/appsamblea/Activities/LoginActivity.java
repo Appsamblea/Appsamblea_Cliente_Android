@@ -1,4 +1,4 @@
-package cliente.appsamblea.Activities;
+package cliente.appsamblea.activities;
 
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -51,9 +51,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         credencialesFalsas.put("a@a.com", "q");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
 
-        // Montar el formulario de login.
+        // Montar el formulario de activity_login.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         getLoaderManager().initLoader(0, null, this);
 
@@ -69,11 +69,22 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
+        //Botón de email
         Button mEmailSignInButton = (Button) findViewById(R.id.loginB);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                login();
+            }
+        });
+
+        //Botón de registrarse
+        TextView mRegistroButton = (TextView) findViewById(R.id.registro);
+        mRegistroButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -1,14 +1,11 @@
-package cliente.appsamblea.Activities;
+package cliente.appsamblea.activities;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,17 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import cliente.appsamblea.Database.Asamblea;
-import cliente.appsamblea.ItemsManagers.itemAsamblea;
-import cliente.appsamblea.ListAdapters.AsambleaListAdapter;
+import cliente.appsamblea.database.Asamblea;
+import cliente.appsamblea.itemsManagers.itemAsamblea;
+import cliente.appsamblea.listAdapters.AsambleaListAdapter;
 
 import cliente.appsamblea.R;
 

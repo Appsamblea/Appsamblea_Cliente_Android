@@ -1,4 +1,4 @@
-package cliente.appsamblea.Database;
+package cliente.appsamblea.database;
 
 import android.content.ContentValues;
 import android.content.Context;

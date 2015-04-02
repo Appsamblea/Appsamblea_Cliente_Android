@@ -1,6 +1,6 @@
-package cliente.appsamblea.ItemsManagers;
+package cliente.appsamblea.itemsManagers;
 import android.widget.TextView;
-import cliente.appsamblea.Database.Asamblea;
+import cliente.appsamblea.database.Asamblea;
 
 /**
  * Created by carlos on 29/01/2015.

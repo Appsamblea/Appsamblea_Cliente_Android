@@ -1,4 +1,4 @@
-package cliente.appsamblea.ListAdapters;
+package cliente.appsamblea.listAdapters;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import cliente.appsamblea.ItemsManagers.itemAsamblea;
+import cliente.appsamblea.itemsManagers.itemAsamblea;
 import cliente.appsamblea.R;
 
 /**

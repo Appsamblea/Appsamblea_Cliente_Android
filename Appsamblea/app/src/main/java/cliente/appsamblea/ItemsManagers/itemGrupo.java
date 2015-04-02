@@ -1,4 +1,4 @@
-package cliente.appsamblea.ItemsManagers;
+package cliente.appsamblea.itemsManagers;
 
 import android.widget.ImageView;
 import android.widget.TextView;

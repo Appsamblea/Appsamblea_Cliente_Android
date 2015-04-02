@@ -1,4 +1,4 @@
-package cliente.appsamblea.Database;
+package cliente.appsamblea.database;
 
 import java.util.Date;
 /**

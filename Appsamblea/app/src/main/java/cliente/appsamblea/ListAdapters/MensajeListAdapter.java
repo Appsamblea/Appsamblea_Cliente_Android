@@ -1,17 +1,15 @@
-package cliente.appsamblea.ListAdapters;
+package cliente.appsamblea.listAdapters;
 
 import cliente.appsamblea.R;
-import cliente.appsamblea.ItemsManagers.itemMensaje;
+import cliente.appsamblea.itemsManagers.itemMensaje;
 import java.util.ArrayList;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.ImageView;
 
 /**
  * Created by carlos on 29/01/2015.

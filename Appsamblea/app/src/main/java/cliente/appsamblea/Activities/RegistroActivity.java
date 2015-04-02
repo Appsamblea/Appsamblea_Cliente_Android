@@ -7,19 +7,19 @@ import android.view.MenuItem;
 
 import cliente.appsamblea.R;
 
-public class CrearVotacionActivity extends ActionBarActivity {
+public class RegistroActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_votacion);
+        setContentView(R.layout.activity_registro);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_crear_votacion, menu);
+        getMenuInflater().inflate(R.menu.menu_registro, menu);
         return true;
     }
 

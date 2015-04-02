@@ -1,7 +1,5 @@
-package cliente.appsamblea.ItemsManagers;
+package cliente.appsamblea.itemsManagers;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by carlos on 15/03/15.
