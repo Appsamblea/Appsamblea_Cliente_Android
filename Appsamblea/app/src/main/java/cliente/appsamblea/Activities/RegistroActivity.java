@@ -1,6 +1,8 @@
 package cliente.appsamblea.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -90,10 +92,18 @@ public class RegistroActivity extends ActionBarActivity {
                     //Crear intent para lanzarlo
                     Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
 
-                    //Meter los datos del usuario en el intent
+                    //Guardar los datos del usuario en Shared Preferences
                     //TODO en lugar de esto mandarle info a la base de datos
-                    intent.putExtra("email", email);
-                    intent.putExtra("password", password);
+                    //Acceder a las sharedPreferences y abrir un editor.
+                    SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+
+                    //Poner valores
+                    editor.putString(getString(R.string.saved_email), email);
+                    editor.putString(getString(R.string.saved_password), password);
+
+                    //Guardar valores
+                    editor.commit();
 
                     //Lanzar el intent
                     startActivity(intent);

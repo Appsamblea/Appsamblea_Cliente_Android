@@ -2,9 +2,11 @@ package cliente.appsamblea.activities;
 
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,14 +48,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
         credencialesFalsas.put("a@a.com", "q");
-        //TODO también eliminar cuando esté la comunicación con el servidor.
-        //Ver si han venido extras en el intent
-        Bundle extras = getIntent().getExtras();
+        //Añadir a las credenciales falsas lo que haya creado el usuario anteriormente
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
+        String emailSharedPreferences = sharedPreferences.getString(getString(R.string.saved_email), "");
+        String passwordSharedPreferences = sharedPreferences.getString(getString(R.string.saved_password), "");
 
-        //Crear un nuevo usuario con la información que ha llegado.
-        if (extras != null) {
-            aniadirCredencialFalsa(getIntent().getStringExtra("email"), getIntent().getStringExtra("password"));
-        }
+        if (!emailSharedPreferences.isEmpty() && !passwordSharedPreferences.isEmpty())
+            credencialesFalsas.put(emailSharedPreferences, passwordSharedPreferences);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
-        //Botón de email
+        //Botón de login
         Button mEmailSignInButton = (Button) findViewById(R.id.loginB);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -166,11 +167,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      */
     private boolean comprobarPassword(String email, String password) {
         //TODO conexión con el servidor, ahora mismo solo comprueba los datos tontos.
-        if (credencialesFalsas.containsKey(email)){
-            return credencialesFalsas.get(email).equals(password);
-        }else{
-            return false;
-        }
+        return credencialesFalsas.containsKey(email) && credencialesFalsas.get(email).equals(password);
 
     }
     /**
@@ -198,15 +195,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 // Show primary email addresses first. Note that there won't be
                 // a primary email address if the user hasn't specified one.
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    /**
-     * Añade unas credenciales falsas desde otra actividad.
-     * @param email nombre del usuario.
-     * @param password Contraseña del usuario.
-     */
-    private void aniadirCredencialFalsa (String email, String password){
-        credencialesFalsas.put (email, password);
     }
 
     @Override
