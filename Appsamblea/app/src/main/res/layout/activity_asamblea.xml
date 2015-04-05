@@ -14,14 +14,16 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Organizado por"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:text="@string/asamblea_organizacion_placeholder"
                 android:id="@+id/organizacion"
                 android:layout_gravity="center_horizontal" />
 
@@ -29,24 +31,114 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:id="@+id/layoutLugar">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iconoLugar"
                     android:src="@drawable/ic_place_grey600_24dp"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/lugar_icon_placeholder" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Palacio de Congresos de Granada"
+                    android:textAppearance="?android:textAppearanceListItem"
+                    android:text="@string/asamblea_lugar_placeholder"
                     android:id="@+id/lugar"
                     android:layout_gravity="center_vertical|left"
-                    android:layout_marginLeft="56dp" />
+                    android:layout_marginLeft="16dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:id="@+id/layoutFecha" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iconoFecha"
+                    android:src="@drawable/ic_event_grey600_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/fecha_icon_placeholder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:text="@string/asamblea_fecha_placeholder"
+                    android:id="@+id/fecha"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:id="@+id/layoutHora" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iconoHora"
+                    android:src="@drawable/ic_access_time_grey600_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/asamblea_hora_placeholder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:text="@string/asamblea_hora_placeholder"
+                    android:id="@+id/hora"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:id="@+id/layoutDescripcion" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:text="@string/asambleas_descripcion"
+                    android:id="@+id/descripcionTitulo"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="0dp" />
+
+                <!--TODO cambiar a textAppearanceListItemSmall si algún día usamos la API 21-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/asamblea_descripcion_placeholder"
+                    android:id="@+id/descripcion"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="0dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+            </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
 
