@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ import cliente.appsamblea.listAdapters.AsambleaListAdapter;
 import cliente.appsamblea.R;
 
 public class ProximasAsambleasActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -54,13 +55,12 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
         proximasAsambleas = new ArrayList <itemAsamblea>();
 
-
         //Crear 3 asambleas de prueba
         Asamblea pruebaAsamblea1, pruebaAsamblea2, pruebaAsamblea3;
         Date fecha = new Date();
-        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Organizacion 1", fecha, 0);
-        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Organizacion 2", fecha, 1);
-        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Organizacion 3", fecha, 2);
+        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Organizacion 1", fecha, 0, "Una asamblea de prueba", "Palacio de Congresos de Madrid");
+        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Organizacion 2", fecha, 1, "Otra asamblea de prueba", "Palacio de Congresos de Granada");
+        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Organizacion 3", fecha, 2, "Y otra asamblea de prueba", "La casa de Paco");
 
         //Crear 3 items de asamblea
         itemAsamblea ia1, ia2, ia3;
@@ -73,32 +73,10 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         proximasAsambleas.add (ia2);
         proximasAsambleas.add (ia3);
 
-
-
-        //Se actualizan los TextViews
-        for(itemAsamblea item: proximasAsambleas){
-            /*item.setNombreAsamblea((TextView)findViewById(R.id.nombreProximaAsamblea));
-            item.getNombreAsamblea().setText(item.getAsamblea().getNombre());
-            item.setFecha((TextView)findViewById(R.id.fechaProximaAsamblea));
-            item.getFecha().setText(item.getAsamblea().getFecha().toString());
-            item.setOrganizacion((TextView)findViewById(R.id.organizacionProximaAsamblea));
-            item.getOrganizacion().setText(item.getAsamblea().getOrganizacion());*/
-        }
-
+        //Poner un adaptador a la lista
         listView = (ListView) findViewById(R.id.listaProximasAsambleas);
         adapter = new AsambleaListAdapter(this ,proximasAsambleas);
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        proximasAsambleas.get(position).getAsamblea().getNombre(), Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
-
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -149,7 +127,7 @@ public class ProximasAsambleasActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.proximas_asambleas, menu);
-            restoreActionBar();
+            //restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
@@ -169,7 +147,6 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
-
 
     /**
      * A placeholder fragment containing a simple view.
