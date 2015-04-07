@@ -1,12 +1,18 @@
 package cliente.appsamblea.database;
 
+import android.util.Log;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
  * Created by carlos on 15/03/15.
  */
-public class Asamblea {
+public class Asamblea implements Serializable{
     private String nombre;
     private Date fecha;
+    private String fechaString;
+    private String horaString;
     private String lugar;
     private String descripcion;
     private boolean es_abierta;
@@ -30,13 +36,24 @@ public class Asamblea {
      * @param nombre el nombre de la asamblea.
      * @param organizacion el nombre de la organizacion que convocó la asamblea.
      * @param fecha la fecha en la que se celebrará la asamblea.
+     * @param descripcion la descripcion de la asamblea.
+     * @param lugar lugar donde se celebrará la asamblea.
      * @param id el id de la asamblea.
      */
-    public Asamblea (String nombre, String organizacion, Date fecha, int id){
+    public Asamblea (String nombre, String organizacion, Date fecha, int id, String descripcion, String lugar){
         this.nombre = nombre;
         this.organizacion = organizacion;
         this.fecha = fecha;
         this.id = id;
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+
+        //Cadenas de fecha y hora
+        SimpleDateFormat parserFecha = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat parserHora = new SimpleDateFormat("HH:mm");
+
+        fechaString = parserFecha.format(fecha);
+        horaString = parserHora.format(fecha);
     }
 
     public long getId() {
@@ -55,9 +72,9 @@ public class Asamblea {
         this.nombre = nombre;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public String getFecha() {return fechaString;}
+
+    public String getHora() {return horaString;}
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;

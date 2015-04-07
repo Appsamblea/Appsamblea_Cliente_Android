@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:padding="15dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="false"
+    android:clickable="false">
         <LinearLayout
             android:layout_width="0.dip"
             android:layout_weight="0.6"

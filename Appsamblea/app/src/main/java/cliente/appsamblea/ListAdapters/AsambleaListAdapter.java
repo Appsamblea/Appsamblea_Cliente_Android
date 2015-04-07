@@ -1,6 +1,7 @@
 package cliente.appsamblea.listAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,13 +12,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import cliente.appsamblea.itemsManagers.itemAsamblea;
 import cliente.appsamblea.R;
+import cliente.appsamblea.activities.AsambleaActivity;
+import cliente.appsamblea.itemsManagers.itemAsamblea;
 
 /**
  * Created by carlos on 29/01/2015.
  */
-public class AsambleaListAdapter implements ListAdapter {
+public class AsambleaListAdapter implements ListAdapter{
     private Context context;
     //protected ArrayList<Long> referencias;
     protected ArrayList<itemAsamblea> listaAsambleas;
@@ -79,12 +81,11 @@ public class AsambleaListAdapter implements ListAdapter {
     @Override
     public View getView(int posicion, View convertView, ViewGroup parent) {
 
-        itemAsamblea item;
+        final itemAsamblea item;
         View vi = convertView;
 
         //Comprobar si convertView es nulo
         if (convertView == null){
-            Log.i("AsambleaListAdapter", "convertView es null en " + posicion);
             //Añadir el xml del ítem. Se hace con el inflater.
             vi = inflater.inflate(R.layout.item_proximaasamblea, null);
 
@@ -96,8 +97,17 @@ public class AsambleaListAdapter implements ListAdapter {
 
             //Darle layout a la vista
             vi.setTag(item);
+
+            vi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, AsambleaActivity.class);
+                    intent.putExtra("Asamblea", item.getAsamblea());
+                    context.startActivity(intent);
+                }
+            });
+
         }else{
-            Log.i("AsambleaListAdapter", "convertView no es null en " + posicion);
             item = (itemAsamblea)vi.getTag();
         }
 
@@ -109,6 +119,14 @@ public class AsambleaListAdapter implements ListAdapter {
             //Rellenar la vista
             item.actualizarValores();
         }
+
+        //Lo pongo aquí por si acaso TODO borrar
+        /*vi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("ListAdapter", "Click! pre return");
+            }
+        });*/
 
         return (vi);
     }

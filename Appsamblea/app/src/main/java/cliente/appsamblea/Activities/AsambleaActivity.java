@@ -12,11 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.database.Asamblea;
 
 public class AsambleaActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    // Elementos de la UI
+    private TextView mOrganizacionView;
+    private TextView mLugarView;
+    private TextView mFechaView;
+    private TextView mHoraView;
+    private TextView mDescripcionView;
+
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -33,9 +45,29 @@ public class AsambleaActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asamblea);
 
+        //Cargar la asamblea del intent.
+        Asamblea asamblea = (Asamblea) getIntent().getSerializableExtra("Asamblea");
+
+        //Cargar la UI en los atributos.
+        mOrganizacionView = (TextView) findViewById(R.id.organizacion);
+        mLugarView = (TextView) findViewById(R.id.lugar);
+        mFechaView = (TextView) findViewById(R.id.fecha);
+        mHoraView = (TextView) findViewById(R.id.hora);
+        mDescripcionView = (TextView) findViewById(R.id.descripcion);
+
+        //Rellenar la UI con los datos de la asamblea
+        mOrganizacionView.setText("Organizada por " + asamblea.getOrganizacion());
+        mLugarView.setText(asamblea.getLugar());
+        mFechaView.setText(asamblea.getFecha());
+        mHoraView.setText(asamblea.getHora());
+        mDescripcionView.setText(asamblea.getDescripcion());
+
+        //Cambiar el título
+        getSupportActionBar().setTitle(asamblea.getNombre());
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        mTitle = asamblea.getNombre();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -45,15 +77,17 @@ public class AsambleaActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
+        //TODO cambiar de activity.
+        /*// update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+                */
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
+        /*switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
                 break;
@@ -63,7 +97,7 @@ public class AsambleaActivity extends ActionBarActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
-        }
+        }*/
     }
 
     public void restoreActionBar() {
