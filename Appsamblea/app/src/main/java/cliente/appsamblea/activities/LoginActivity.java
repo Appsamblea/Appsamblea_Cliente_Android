@@ -45,6 +45,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
         credencialesFalsas.put("a@a.com", "q");
