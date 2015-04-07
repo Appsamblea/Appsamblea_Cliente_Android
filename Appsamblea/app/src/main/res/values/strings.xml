@@ -71,13 +71,6 @@
 
     <!--AsambleaActivity-->
     <string name="asambleas_descripcion">Descripción</string>
-
-    <!--Preferencias-->
-    <string name="preference_key_file">com.appsamblea.appsamblea.preferences</string>
-    <string name="saved_email">email</string>
-    <string name="saved_password">password</string>
-
-    <!--Placeholders-->
     <string name="asamblea_organizacion_placeholder">Organizado por </string>
     <string name="lugar_icon_placeholder">Lugar</string>
     <string name="asamblea_lugar_placeholder">Palacio de Congresos de Granada</string>
@@ -87,4 +80,21 @@
     <string name="asamblea_hora_placeholder">16:00</string>
     <string name="asamblea_descripcion_placeholder">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</string>
 
+    <!--OrdenDiaActivity-->
+    <string name="ordenDelDia_placeholder_nombre_1">Renta</string>
+    <string name="ordenDelDia_placeholder_descripcion_1">Hablaremos sobre la renta de las personas mayores.</string>
+    <string name="ordenDelDia_placeholder_nombre_2">Organización</string>
+    <string name="ordenDelDia_placeholder_descripcion_2">Hablaremos sobre la organización actual del grupo.</string>
+    <string name="ordenDelDia_placeholder_nombre_3">Elecciones</string>
+    <string name="ordenDelDia_placeholder_descripcion_3">Cada candidato a las elecciones para presidir al grupo expondrá brevemente por qué debemos elegirlo..</string>
+    <string name="ordenDelDia_cumplido">Cumplido</string>
+    
+    <!--Preferencias-->
+    <string name="preference_key_file">com.appsamblea.appsamblea.preferences</string>
+    <string name="saved_email">email</string>
+    <string name="saved_password">password</string>
+
+    
+    
+    
 </resources>
