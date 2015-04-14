@@ -1,4 +1,4 @@
-package cliente.appsamblea.Application;
+package cliente.appsamblea.application;
 import android.app.Application;
 import java.util.HashMap;
 
@@ -16,7 +16,7 @@ public class AppsambleaApplication extends Application{
     }
 
     //Método para obtener los rastreadores que utilicemos
-    synchronized Tracker getTracker(TrackerName trackerId) {
+    public synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {
 
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);

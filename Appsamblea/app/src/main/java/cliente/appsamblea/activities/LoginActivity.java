@@ -22,12 +22,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
@@ -94,7 +99,26 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(intent);
             }
         });
+
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Login");
+        t.send(new HitBuilders.AppViewBuilder().build());
     }
+
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        GoogleAnalytics.getInstance(LoginActivity.this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        GoogleAnalytics.getInstance(LoginActivity.this).reportActivityStop(this);
+    }
+
+    //
 
     /**
      * Método para identificarse.
