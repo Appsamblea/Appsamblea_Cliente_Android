@@ -37,7 +37,7 @@
     <string name="title_activity_ponencia">Ponencia</string>
     <string name="title_activity_invitar_asistentes">Invitar asistentes</string>
     <string name="title_activity_turnos_palabra">Turnos de palabra</string>
-    <string name="title_activity_crear_votacion">Crear Votacion</string>
+    <string name="title_activity_crear_votacion">Votaciones</string>
     <string name="pregunta">Pregunta</string>
     <string name="si">Sí</string>
     <string name="no">No</string>
@@ -93,6 +93,7 @@
     <string name="preference_key_file">com.appsamblea.appsamblea.preferences</string>
     <string name="saved_email">email</string>
     <string name="saved_password">password</string>
+    <string name="title_activity_votaciones">Votaciones</string>
 
     
     
