@@ -1,11 +1,12 @@
 package cliente.appsamblea.database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by carlos on 15/03/15.
  */
-public class Votacion {
+public class Votacion implements Serializable{
     public ArrayList getOpciones() {
         return opciones;
     }

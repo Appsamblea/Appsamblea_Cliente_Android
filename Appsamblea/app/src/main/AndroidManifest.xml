@@ -113,6 +113,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cliente.appsamblea.activities.AsambleaActivity" />
         </activity>
+        <activity
+            android:name=".activities.VotacionActivity"
+            android:label="@string/title_activity_votacion"
+            android:parentActivityName=".activities.VotacionesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cliente.appsamblea.activities.VotacionesActivity" />
+        </activity>
     </application>
 
 </manifest>
