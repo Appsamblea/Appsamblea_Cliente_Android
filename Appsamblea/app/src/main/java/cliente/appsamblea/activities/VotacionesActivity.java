@@ -1,26 +1,26 @@
 package cliente.appsamblea.activities;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.database.Votacion;
-import cliente.appsamblea.listAdapters.VotacionesListAdapter;
 
 public class VotacionesActivity extends ActionBarActivity {
 
-    private Votacion v1, v2, v3;
+    private ArrayList <String> votaciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,9 @@ public class VotacionesActivity extends ActionBarActivity {
         setContentView(R.layout.activity_votaciones);
 
         //Crear unas votaciones de prueba.
-        v1 = new Votacion("¿Deberíamos de seguir haciendo esta asamblea?");
-        v2 = new Votacion("¿Quién debería de ser nuestro nuevo líder?");
-        v3 = new Votacion("¿Os parece bien que cambiemos la fecha de la siguiente asamblea a Julio?");
+        Votacion v1 = new Votacion("¿Deberíamos de seguir haciendo esta asamblea?");
+        Votacion v2 = new Votacion("¿Quién debería de ser nuestro nuevo líder?");
+        Votacion v3 = new Votacion("¿Os parece bien que cambiemos la fecha de la siguiente asamblea a Julio?");
 
         String si = "Si";
         String no = "No";
@@ -46,15 +46,24 @@ public class VotacionesActivity extends ActionBarActivity {
         v3.addOpcion(si);
         v3.addOpcion(si);
 
-        //Crear el listAdapter
-        ArrayList <Votacion> votaciones = new ArrayList<Votacion>();
-        votaciones.add(v1);
-        votaciones.add(v2);
-        votaciones.add(v3);
+        //Crear el listAdapter para strings
+        votaciones = new ArrayList<String>();
+        votaciones.add(v1.getPregunta());
+        votaciones.add(v2.getPregunta());
+        votaciones.add(v3.getPregunta());
 
-        final VotacionesListAdapter adapter = new VotacionesListAdapter(this, android.R.layout.simple_list_item_1, votaciones);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, votaciones);
         ListView l = (ListView) findViewById(R.id.listaVotaciones);
         l.setAdapter(adapter);
+
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(VotacionesActivity.this, VotacionActivity.class);
+                intent.putExtra("votacion", votaciones.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 
