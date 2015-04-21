@@ -104,6 +104,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="bio">Biografía:</string>
+
+    <!-- Votación -->
+    <string name="votar">Votar</string>
     
     
     

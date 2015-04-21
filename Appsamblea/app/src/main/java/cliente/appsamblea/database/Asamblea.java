@@ -1,7 +1,5 @@
 package cliente.appsamblea.database;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +7,8 @@ import java.util.Date;
  * Created by carlos on 15/03/15.
  */
 public class Asamblea implements Serializable{
+    private long id;
+
     private String nombre;
     private Date fecha;
     private String fechaString;
@@ -21,7 +21,6 @@ public class Asamblea implements Serializable{
     private String creador;
     private String organizacion;
     private String participantes;
-    private long id;
 
     /**
      * Constructor vacío
