@@ -20,7 +20,7 @@ public class AppsambleaApplication extends Application{
         if (!mTrackers.containsKey(trackerId)) {
 
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-           // Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.newTracker(PROPERTY_ID)
+            // Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.newTracker(PROPERTY_ID)
             //        : (trackerId == TrackerName.GLOBAL_TRACKER) ? analytics.newTracker(R.xml.tracker)
             Tracker t = analytics.newTracker(R.xml.tracker);
             mTrackers.put(trackerId, t);

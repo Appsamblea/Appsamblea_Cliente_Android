@@ -20,14 +20,15 @@ import cliente.appsamblea.database.Votacion;
 
 public class VotacionesActivity extends ActionBarActivity {
 
-    private ArrayList <String> votaciones;
+    private ArrayList <String> nombresVotaciones;
+    private ArrayList <Votacion> votaciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_votaciones);
 
-        //Crear unas votaciones de prueba.
+        //Crear unas vsVotaciones de prueba.
         Votacion v1 = new Votacion("¿Deberíamos de seguir haciendo esta asamblea?");
         Votacion v2 = new Votacion("¿Quién debería de ser nuestro nuevo líder?");
         Votacion v3 = new Votacion("¿Os parece bien que cambiemos la fecha de la siguiente asamblea a Julio?");
@@ -44,15 +45,20 @@ public class VotacionesActivity extends ActionBarActivity {
         v2.addOpcion(rajoy);
         v2.addOpcion(albert);
         v3.addOpcion(si);
-        v3.addOpcion(si);
+        v3.addOpcion(no);
+
+        votaciones = new ArrayList<>();
+        votaciones.add(v1);
+        votaciones.add(v2);
+        votaciones.add(v3);
 
         //Crear el listAdapter para strings
-        votaciones = new ArrayList<String>();
-        votaciones.add(v1.getPregunta());
-        votaciones.add(v2.getPregunta());
-        votaciones.add(v3.getPregunta());
+        nombresVotaciones = new ArrayList<>();
+        nombresVotaciones.add(v1.getPregunta());
+        nombresVotaciones.add(v2.getPregunta());
+        nombresVotaciones.add(v3.getPregunta());
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, votaciones);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombresVotaciones);
         ListView l = (ListView) findViewById(R.id.listaVotaciones);
         l.setAdapter(adapter);
 
@@ -83,6 +89,10 @@ public class VotacionesActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == android.R.id.home){
+            onBackPressed();
             return true;
         }
 

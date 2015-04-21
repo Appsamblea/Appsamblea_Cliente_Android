@@ -7,28 +7,16 @@ import java.util.ArrayList;
  * Created by carlos on 15/03/15.
  */
 public class Votacion implements Serializable{
-    public ArrayList getOpciones() {
-        return opciones;
-    }
-
-    public void setOpciones(ArrayList opciones) {
-        this.opciones = opciones;
-    }
-
-    public String getPregunta() {
-        return pregunta;
-    }
-
-    public void setPregunta(String pregunta) {
-        this.pregunta = pregunta;
-    }
-
     private String pregunta;
-    private ArrayList opciones;
+    private ArrayList <String> opciones;
+
+    public Votacion(){
+
+    }
 
     public Votacion (String pregunta){
         this.pregunta = pregunta;
-        opciones = new ArrayList();
+        opciones = new ArrayList<>();
     }
 
     /**
@@ -49,6 +37,21 @@ public class Votacion implements Serializable{
             return false;
         else opciones.remove(posicion);
         return true;
+    }
+    public ArrayList getOpciones() {
+        return opciones;
+    }
+
+    public void setOpciones(ArrayList opciones) {
+        this.opciones = opciones;
+    }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
     }
 
 
