@@ -13,9 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Votacion;
 
 public class VotacionesActivity extends ActionBarActivity {
@@ -70,6 +74,12 @@ public class VotacionesActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("ListaDeVotaciones");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 

@@ -15,9 +15,13 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import org.w3c.dom.Text;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Asamblea;
 
 public class AsambleaActivity extends ActionBarActivity
@@ -74,6 +78,12 @@ public class AsambleaActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Asamblea");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
     @Override

@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 
 public class AniadirUsuarioActivity extends ActionBarActivity {
     private ListView listView;
@@ -32,6 +36,12 @@ public class AniadirUsuarioActivity extends ActionBarActivity {
         for(int i = 0; i < listView.getAdapter().getCount(); ++i){
             listView.setItemChecked(i, false);
         }
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Añadir usuario");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 

@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 
 public class EditarOrganizacionActivity extends ActionBarActivity {
 
@@ -13,6 +17,12 @@ public class EditarOrganizacionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_edit_organizacion);
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Editar organización");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 

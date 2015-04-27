@@ -13,7 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 
 public class DocumentosActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -41,6 +45,12 @@ public class DocumentosActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Documentos");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
     @Override

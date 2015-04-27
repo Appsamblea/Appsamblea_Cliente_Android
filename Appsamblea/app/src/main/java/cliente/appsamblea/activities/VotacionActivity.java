@@ -11,7 +11,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Votacion;
 
 public class VotacionActivity extends ActionBarActivity {
@@ -56,6 +60,11 @@ public class VotacionActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Votación");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 

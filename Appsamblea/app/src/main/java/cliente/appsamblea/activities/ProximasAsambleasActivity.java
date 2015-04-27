@@ -17,9 +17,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 import java.util.Date;
 
+import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Asamblea;
 import cliente.appsamblea.itemsManagers.itemAsamblea;
 import cliente.appsamblea.listAdapters.AsambleaListAdapter;
@@ -87,6 +91,11 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("PróximasAsambleas");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
     @Override

@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 
 public class RegistroActivity extends ActionBarActivity {
 
@@ -110,7 +114,11 @@ public class RegistroActivity extends ActionBarActivity {
                 }
             }
         });
-
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Registro");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 

@@ -35,10 +35,6 @@
             android:label="@string/title_activity_perfil" >
         </activity>
         <activity
-            android:name=".activities.ModificarPerfilActivity"
-            android:label="@string/title_activity_modificar_perfil" >
-        </activity>
-        <activity
             android:name=".activities.EditarPerfilActivity"
             android:label="@string/title_activity_editar_perfil" >
         </activity>

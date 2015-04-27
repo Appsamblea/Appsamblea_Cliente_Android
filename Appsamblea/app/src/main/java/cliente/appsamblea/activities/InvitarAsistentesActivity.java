@@ -10,9 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.itemsManagers.itemInvitacion;
 import cliente.appsamblea.listAdapters.InvitacionListAdapter;
 
@@ -28,6 +32,12 @@ public class InvitarAsistentesActivity extends ActionBarActivity{
         ArrayList<itemInvitacion> arrayList = new ArrayList();
         InvitacionListAdapter listAdapter = new InvitacionListAdapter(this, arrayList);
         lista.setAdapter(listAdapter);
+
+        //Seguimiento de la actividad: GoogleAnalytics
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Invitar asistentes");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //
     }
 
 
