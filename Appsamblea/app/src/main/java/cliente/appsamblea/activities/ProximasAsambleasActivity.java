@@ -88,9 +88,9 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
+        /*mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout));*/
         //Seguimiento de la actividad: GoogleAnalytics
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("PróximasAsambleas");
