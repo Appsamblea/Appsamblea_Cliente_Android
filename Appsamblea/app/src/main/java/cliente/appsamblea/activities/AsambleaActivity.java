@@ -2,23 +2,20 @@ package cliente.appsamblea.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-
-import org.w3c.dom.Text;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.application.AppsambleaApplication;
@@ -75,10 +72,10 @@ public class AsambleaActivity extends ActionBarActivity
         mTitle = asamblea.getNombre();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
+        /*mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
+        */
         //Seguimiento de la actividad: GoogleAnalytics
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("Asamblea");

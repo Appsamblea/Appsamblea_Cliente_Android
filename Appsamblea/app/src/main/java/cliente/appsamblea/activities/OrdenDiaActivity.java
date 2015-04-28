@@ -42,10 +42,10 @@ public class OrdenDiaActivity extends ActionBarActivity
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
+        /*mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
+        */
         //Seguimiento de la actividad: GoogleAnalytics
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("Orden del día");
