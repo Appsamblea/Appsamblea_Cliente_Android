@@ -67,8 +67,8 @@ public class AsambleaActivity extends ActionBarActivity
         //Cambiar el título
         getSupportActionBar().setTitle(asamblea.getNombre());
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        /*mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);*/
         mTitle = asamblea.getNombre();
 
         // Set up the drawer.
@@ -118,14 +118,14 @@ public class AsambleaActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+        /*if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.asamblea, menu);
             restoreActionBar();
             return true;
-        }
+        }*/
         return super.onCreateOptionsMenu(menu);
     }
 
