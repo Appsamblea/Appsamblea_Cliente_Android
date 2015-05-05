@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -139,6 +138,10 @@ public class AsambleaActivity extends ActionBarActivity
                 return true;
             case R.id.crear_votacion:
                 intent = new Intent (AsambleaActivity.this, VotacionesActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.turnos_de_palabra:
+                intent = new Intent (AsambleaActivity.this, TurnosPalabraActivity.class);
                 startActivity(intent);
                 return true;
             default:

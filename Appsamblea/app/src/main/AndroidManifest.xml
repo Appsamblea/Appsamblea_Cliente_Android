@@ -88,6 +88,9 @@
         <activity
             android:name=".activities.TurnosPalabraActivity"
             android:label="@string/title_activity_turnos_palabra" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cliente.appsamblea.activities.AsambleaActivity" />
         </activity>
         <activity
             android:name=".activities.CrearVotacionActivity"

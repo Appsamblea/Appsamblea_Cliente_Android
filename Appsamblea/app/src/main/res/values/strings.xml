@@ -107,7 +107,8 @@
 
     <!-- Votación -->
     <string name="votar">Votar</string>
-    
-    
-    
+
+    <!-- Turnos de palabra -->
+    <string name="placeholder_imagen_contacto">ImagenContacto</string>
+
 </resources>

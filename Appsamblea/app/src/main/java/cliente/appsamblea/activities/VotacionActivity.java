@@ -1,8 +1,7 @@
 package cliente.appsamblea.activities;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,8 +55,7 @@ public class VotacionActivity extends ActionBarActivity {
         mVotarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (VotacionActivity.this, VotacionesActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
         //Seguimiento de la actividad: GoogleAnalytics
