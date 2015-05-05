@@ -5,12 +5,59 @@
     <bool name="ga_autoActivityTracking">true</bool>
 
     <!-- The screen names that will appear in reports -->
+    <!--
     <screenName name="com.google.android.gms.analytics.samples.mobileplayground.ScreenviewFragment">
         AnalyticsSampleApp ScreenView
     </screenName>
     <screenName name="com.google.android.gms.analytics.samples.mobileplayground.EcommerceFragment">
         AnalyticsSampleApp EcommerceView
     </screenName>
+    -->
+
+    <string name="cliente.appsamblea.activities.LoginActivity">Login</string>
+    <string name="cliente.appsamblea.activities.ProximasAsambleasActivity">Próximas asambleas</string>
+    <string name="cliente.appsamblea.activities.AsambleaActivity">Asamblea</string>
+    <string name="cliente.appsamblea.activities.PerfilActivity">Pefil</string>
+    <string name="cliente.appsamblea.activities.EditarPerfilActivity">Editar perfil</string>
+    <string name="cliente.appsamblea.activities.GrupoActivity">Grupo</string>
+    <string name="cliente.appsamblea.activities.ActaActivity">Acta</string>
+    <string name="cliente.appsamblea.activities.AniadirUsuarioActivity">Añadir usuario</string>
+    <string name="cliente.appsamblea.activities.CrearVotacionActivity">Crear votación</string>
+    <string name="cliente.appsamblea.activities.DocumentosActivity">Documentos</string>
+    <string name="cliente.appsamblea.activities.EditarOrganizacionActivity">Editar organización</string>
+    <string name="cliente.appsamblea.activities.InvitarAsistentesActivity">Invitar asistentes</string>
+    <string name="cliente.appsamblea.activities.EstadisticasActivity">Estadísticas</string>
+    <string name="cliente.appsamblea.activities.OrdenDiaActivity">Orden del día</string>
+    <string name="cliente.appsamblea.activities.OrganizacionActivity">Organización</string>
+    <string name="cliente.appsamblea.activities.PonenciaActivity">Ponencia</string>
+    <string name="cliente.appsamblea.activities.RegistroActivity">Registro</string>
+    <string name="cliente.appsamblea.activities.TurnosPalabraActivity">Turnos de palabra</string>
+    <string name="cliente.appsamblea.activities.VotacionActivity">Votación</string>
+    <string name="cliente.appsamblea.activities.VotacionesActivity">Votaciones</string>
+
+    <!--
+    <screenName name="cliente.appsamblea.activities.LoginActivity">Login</screenName>
+    <screenName name="cliente.appsamblea.activities.ProximasAsambleasActivity">Próximas asambleas</screenName>
+    <screenName name="cliente.appsamblea.activities.AsambleaActivity">Asamblea</screenName>
+    <screenName name="cliente.appsamblea.activities.PerfilActivity">Pefil</screenName>
+    <screenName name="cliente.appsamblea.activities.EditarPerfilActivity">Editar perfil</screenName>
+    <screenName name="cliente.appsamblea.activities.GrupoActivity">Grupo</screenName>
+    <screenName name="cliente.appsamblea.activities.ActaActivity">Acta</screenName>
+    <screenName name="cliente.appsamblea.activities.AniadirUsuarioActivity">Añadir usuario</screenName>
+    <screenName name="cliente.appsamblea.activities.CrearVotacionActivity">Crear votación</screenName>
+    <screenName name="cliente.appsamblea.activities.DocumentosActivity">Documentos</screenName>
+    <screenName name="cliente.appsamblea.activities.EditarOrganizacionActivity">Editar organización</screenName>
+    <screenName name="cliente.appsamblea.activities.InvitarAsistentesActivity">Invitar asistentes</screenName>
+    <screenName name="cliente.appsamblea.activities.EstadisticasActivity">Estadísticas</screenName>
+    <screenName name="cliente.appsamblea.activities.OrdenDiaActivity">Orden del día</screenName>
+    <screenName name="cliente.appsamblea.activities.OrganizacionActivity">Organización</screenName>
+    <screenName name="cliente.appsamblea.activities.PonenciaActivity">Ponencia</screenName>
+    <screenName name="cliente.appsamblea.activities.RegistroActivity">Registro</screenName>
+    <screenName name="cliente.appsamblea.activities.TurnosPalabraActivity">Turnos de palabra</screenName>
+    <screenName name="cliente.appsamblea.activities.VotacionActivity">Votación</screenName>
+    <screenName name="cliente.appsamblea.activities.VotacionesActivity">Votaciones</screenName>
+    -->
+
     <!--  The following value should be replaced with correct property id. -->
     <string name="ga_trackingId">UA-61886836-2</string>
 

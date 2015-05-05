@@ -86,7 +86,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-               login();
+                login();
             }
         });
 
@@ -99,10 +99,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(intent);
             }
         });
-
-
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
-        t.setScreenName("Login");
+        t.setScreenName("Login en onCreate");
         t.send(new HitBuilders.AppViewBuilder().build());
     }
 
@@ -110,7 +108,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     @Override
     protected void onStart(){
         super.onStart();
-        GoogleAnalytics.getInstance(LoginActivity.this).reportActivityStart(this);
+        Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
+        t.setScreenName("Se ha entrado en Login en onStart");
+        t.send(new HitBuilders.AppViewBuilder().build());
+        //GoogleAnalytics.getInstance(LoginActivity.this).reportActivityStart(this);
     }
 
     @Override
