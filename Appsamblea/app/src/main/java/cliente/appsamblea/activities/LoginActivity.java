@@ -9,9 +9,12 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +29,21 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -102,8 +120,48 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("Login en onCreate");
         t.send(new HitBuilders.AppViewBuilder().build());
-    }
 
+        Thread hebra = new Thread(){
+            public void run (){
+                //Ejemplo de HTTP request
+                JSONObject jsonobj;
+                jsonobj = new JSONObject();
+                try {
+                    jsonobj.put("email", "a@b.com");
+
+                    DefaultHttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppostreq = new HttpPost("http://appsamblea-project.appspot.com/registro");
+
+                    StringEntity se = new StringEntity(jsonobj.toString());
+
+                    se.setContentType("application/json;charset=UTF-8");
+                    se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
+
+                    httppostreq.setEntity(se);
+
+                    HttpResponse httpresponse = httpclient.execute(httppostreq);
+
+                    String responseText = null;
+
+                    responseText = EntityUtils.toString(httpresponse.getEntity());
+
+                    Log.d("Login", responseText);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        hebra.start();
+
+
+    }
 
     @Override
     protected void onStart(){
