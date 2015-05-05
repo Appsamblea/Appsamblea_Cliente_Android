@@ -29,7 +29,7 @@ public class TurnosPalabraActivity extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    
+
     private CharSequence mTitle;
 
     @Override
