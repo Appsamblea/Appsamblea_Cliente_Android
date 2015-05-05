@@ -30,10 +30,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:id="@+id/layoutLugar">
+                android:id="@+id/layoutLugar"
+                android:minHeight="48dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -56,10 +57,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:id="@+id/layoutFecha" >
+                android:id="@+id/layoutFecha"
+                android:minHeight="48dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -82,10 +84,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:id="@+id/layoutHora" >
+                android:id="@+id/layoutHora"
+                android:minHeight="48dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
