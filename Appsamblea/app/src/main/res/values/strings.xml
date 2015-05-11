@@ -111,4 +111,7 @@
     <!-- Turnos de palabra -->
     <string name="placeholder_imagen_contacto">ImagenContacto</string>
 
+    <!-- Facebook -->
+    <string name="facebook_app_id">1604568749755371</string>
+
 </resources>

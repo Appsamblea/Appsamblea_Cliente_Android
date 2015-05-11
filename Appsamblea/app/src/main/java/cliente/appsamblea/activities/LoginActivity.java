@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.application.AppsambleaApplication;
@@ -50,6 +53,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Inicializar el SDK de Facebook, es necesario hacerlo antes del setContentView
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
@@ -62,12 +70,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         if (!emailSharedPreferences.isEmpty() && !passwordSharedPreferences.isEmpty())
             credencialesFalsas.put(emailSharedPreferences, passwordSharedPreferences);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         // Montar el formulario de activity_login.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        getLoaderManager().initLoader(0, null, this);
+        //getLoaderManager().initLoader(0, null, this);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -99,6 +105,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(intent);
             }
         });
+
+
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("Login en onCreate");
         t.send(new HitBuilders.AppViewBuilder().build());
