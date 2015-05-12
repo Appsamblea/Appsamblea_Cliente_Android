@@ -1,6 +1,9 @@
 package cliente.appsamblea.activities;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -136,6 +140,13 @@ public class ProximasAsambleasActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.proximas_asambleas, menu);
+            SearchManager searchManager =
+                    (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            SearchView searchView =
+                    (SearchView) menu.findItem(R.id.action_search).getActionView();
+            searchView.setSearchableInfo(
+                    searchManager.getSearchableInfo(getComponentName()));
+
             //restoreActionBar();
             return true;
         }
@@ -148,8 +159,20 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Context context = this;
         //noinspection SimplifiableIfStatement
+        switch(id){
+            case R.id.action_add:
+                //Cambiar a Crear asamblea
+                //Intent intent = new Intent(context, CrearAsambleaActivity.class);
+                // intent.putExtra("Asamblea", item.getAsamblea());
+                //context.startActivity(intent);
+                break;
+            case R.id.action_search:
+                //Cambiar la Actionbar a un buscador para buscar la asamblea
+
+                break;
+        }
         if (id == R.id.action_settings) {
             return true;
         }
@@ -195,5 +218,4 @@ public class ProximasAsambleasActivity extends ActionBarActivity
             ((ProximasAsambleasActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }

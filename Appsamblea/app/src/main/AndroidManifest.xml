@@ -50,20 +50,12 @@
             android:label="@string/title_activity_asamblea" >
         </activity>
         <activity
-            android:name=".activities.BuscarAsambleaActivity"
-            android:label="@string/title_activity_buscar_asamblea" >
-        </activity>
-        <activity
             android:name=".activities.OrganizacionActivity"
             android:label="@string/title_activity_organizacion" >
         </activity>
         <activity
             android:name=".activities.GrupoActivity"
             android:label="@string/title_activity_grupo" >
-        </activity>
-        <activity
-            android:name=".activities.BuscarOrganizacionActivity"
-            android:label="@string/title_activity_buscar_organizacion" >
         </activity>
         <activity
             android:name=".activities.EstadisticasActivity"
