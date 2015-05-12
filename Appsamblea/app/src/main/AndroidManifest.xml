@@ -11,7 +11,7 @@
     <application
         android:name=".application.AppsambleaApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icono_appsamblea"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.base" >
         <meta-data
