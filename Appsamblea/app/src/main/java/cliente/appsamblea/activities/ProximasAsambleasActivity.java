@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -144,6 +145,7 @@ public class ProximasAsambleasActivity extends ActionBarActivity
                     (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             SearchView searchView =
                     (SearchView) menu.findItem(R.id.action_search).getActionView();
+            //searchView.setMinimumWidth();
             searchView.setSearchableInfo(
                     searchManager.getSearchableInfo(getComponentName()));
 
@@ -170,7 +172,6 @@ public class ProximasAsambleasActivity extends ActionBarActivity
                 break;
             case R.id.action_search:
                 //Cambiar la Actionbar a un buscador para buscar la asamblea
-
                 break;
         }
         if (id == R.id.action_settings) {

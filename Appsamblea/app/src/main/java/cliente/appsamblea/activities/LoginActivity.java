@@ -68,6 +68,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     // Elementos de la UI
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private Button mEmailSignInButton;
+    private TextView mRegistroButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         //Botón de login
-        Button mEmailSignInButton = (Button) findViewById(R.id.loginB);
+        mEmailSignInButton = (Button) findViewById(R.id.loginB);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +117,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         //Botón de registrarse
-        TextView mRegistroButton = (TextView) findViewById(R.id.registro);
+        mRegistroButton = (TextView) findViewById(R.id.registro);
         mRegistroButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +131,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         t.setScreenName("Login en onCreate");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        Thread hebra = new Thread(){
+        /*Thread hebra = new Thread(){
             public void run (){
                 //Ejemplo de HTTP request
                 JSONObject jsonobj;
@@ -166,7 +168,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         };
 
-        hebra.start();
+        hebra.start();*/
 
 
     }
