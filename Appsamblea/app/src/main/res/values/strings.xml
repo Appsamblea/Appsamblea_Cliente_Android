@@ -59,7 +59,7 @@
     <string name="error_invalid_email">Dirección de correo no válida</string>
     <string name="error_invalid_password">Contraseña demasiado corta</string>
     <string name="error_password_must_be_8_characters_long">La contraseña debe de tener 8 caracteres como mínimo</string>
-    <string name="error_incorrect_password">Contraseña incorrecta</string>
+    <string name="error_incorrect_password">Email o contraseña incorrecto</string>
     <string name="error_field_required">Debes rellenar este campo</string>
     <string name="error_passwords_are_not_the_same">Las contraseñas deben ser iguales</string>
     <string name="title_activity_registro">Registro</string>
