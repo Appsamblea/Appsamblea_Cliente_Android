@@ -11,12 +11,15 @@
     <application
         android:name=".application.AppsambleaApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icono_appsamblea"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.base" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity
             android:name=".activities.LoginActivity"
@@ -45,20 +48,12 @@
             android:label="@string/title_activity_asamblea" >
         </activity>
         <activity
-            android:name=".activities.BuscarAsambleaActivity"
-            android:label="@string/title_activity_buscar_asamblea" >
-        </activity>
-        <activity
             android:name=".activities.OrganizacionActivity"
             android:label="@string/title_activity_organizacion" >
         </activity>
         <activity
             android:name=".activities.GrupoActivity"
             android:label="@string/title_activity_grupo" >
-        </activity>
-        <activity
-            android:name=".activities.BuscarOrganizacionActivity"
-            android:label="@string/title_activity_buscar_organizacion" >
         </activity>
         <activity
             android:name=".activities.EstadisticasActivity"
@@ -119,6 +114,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cliente.appsamblea.activities.VotacionesActivity" />
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".activities.CrearAsambleaActivity"
+            android:label="@string/title_activity_crear_asamblea" >
         </activity>
     </application>
 
