@@ -7,14 +7,16 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
-import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,25 +27,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,7 @@ import java.util.Map;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.application.AppsambleaApplication;
+import cliente.appsamblea.utils.ComunicadorServidor;
 
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
@@ -65,9 +67,34 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     // Elementos de la UI
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private LoginButton mFacebookLoginButton;
+
+    //Callback manager, necesario para el login con Facebook
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Inicializar el SDK de Facebook, es necesario hacerlo antes del setContentView
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        //Sacar la key hash de Facebook por log para ponerla en Facebook developers.
+        //TODO esto va fuera en producción.
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo("cliente.appsamblea", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.e("MY KEY HASH:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
 
         //TODO eliminar cuando esté la comunicación con el servidor.
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
@@ -80,12 +107,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         if (!emailSharedPreferences.isEmpty() && !passwordSharedPreferences.isEmpty())
             credencialesFalsas.put(emailSharedPreferences, passwordSharedPreferences);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         // Montar el formulario de activity_login.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        getLoaderManager().initLoader(0, null, this);
+        //getLoaderManager().initLoader(0, null, this);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -117,51 +142,65 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(intent);
             }
         });
+
+        //Botón de Login con Facebook
+        mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login);
+        callbackManager = CallbackManager.Factory.create();
+        mFacebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken token = loginResult.getAccessToken();
+
+                //Crear una llamada asincrona con Graph
+                GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                        String id, nombre, apellidos, email;
+
+                        try {
+                            id = jsonObject.getString("id");
+                            nombre = jsonObject.getString("first_name");
+                            apellidos = jsonObject.getString("last_name");
+                            email = jsonObject.getString("email");
+
+                            //TODO ver lo que devuelve el método y actuar en consecuencia.
+                            ComunicadorServidor.registrarConFacebook(id, nombre, apellidos, email);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                Bundle parametros = new Bundle();
+                parametros.putString("fields", "id, first_name, last_name, email");
+                request.setParameters(parametros);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                Log.e("Facebook Login", "cancelado");
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                Log.e("Facebook Login", "Error!");
+            }
+        });
+
+
         Tracker t = ((AppsambleaApplication) getApplication()).getTracker(AppsambleaApplication.TrackerName.APP_TRACKER);
         t.setScreenName("Login en onCreate");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        Thread hebra = new Thread(){
-            public void run (){
-                //Ejemplo de HTTP request
-                JSONObject jsonobj;
-                jsonobj = new JSONObject();
-                try {
-                    jsonobj.put("email", "a@b.com");
-
-                    DefaultHttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppostreq = new HttpPost("http://appsamblea-project.appspot.com/registro");
-
-                    StringEntity se = new StringEntity(jsonobj.toString());
-
-                    se.setContentType("application/json;charset=UTF-8");
-                    se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
-
-                    httppostreq.setEntity(se);
-
-                    HttpResponse httpresponse = httpclient.execute(httppostreq);
-
-                    String responseText = null;
-
-                    responseText = EntityUtils.toString(httpresponse.getEntity());
-
-                    Log.d("Login", responseText);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        hebra.start();
-
-
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     @Override
     protected void onStart(){
@@ -177,8 +216,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onStop();
         GoogleAnalytics.getInstance(LoginActivity.this).reportActivityStop(this);
     }
-
-    //
 
     /**
      * Método para identificarse.
