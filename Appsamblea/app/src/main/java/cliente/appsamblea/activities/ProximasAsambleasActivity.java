@@ -13,6 +13,7 @@ import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,10 +142,23 @@ public class ProximasAsambleasActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.proximas_asambleas, menu);
+            //Hay que crear un objeto "final" para poder utilizarlo en el "onFocusChange"
+            final Menu menuFinal = menu;
             SearchManager searchManager =
                     (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             SearchView searchView =
                     (SearchView) menu.findItem(R.id.action_search).getActionView();
+            searchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if(hasFocus){
+                        menuFinal.findItem(R.id.action_add).setVisible(false);
+                    }
+                    else{
+                        menuFinal.findItem(R.id.action_add).setVisible(true);
+                    }
+                }
+            });
             //searchView.setMinimumWidth();
             searchView.setSearchableInfo(
                     searchManager.getSearchableInfo(getComponentName()));
