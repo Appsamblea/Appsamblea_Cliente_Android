@@ -116,5 +116,6 @@
 
     <!-- Facebook -->
     <string name="facebook_app_id">1604568749755371</string>
+    <string name="title_activity_crear_organizacion">CrearOrganizacion</string>
 
 </resources>

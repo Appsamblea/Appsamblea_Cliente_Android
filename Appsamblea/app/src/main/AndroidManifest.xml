@@ -124,6 +124,10 @@
             android:name=".activities.CrearAsambleaActivity"
             android:label="@string/title_activity_crear_asamblea" >
         </activity>
+        <activity
+            android:name=".activities.CrearOrganizacionActivity"
+            android:label="@string/title_activity_crear_organizacion" >
+        </activity>
     </application>
 
 </manifest>
