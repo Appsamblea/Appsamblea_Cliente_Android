@@ -37,15 +37,17 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:weightSum="1.0">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_width="0dip"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imagenFechaCrearAsamblea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_location_on_black_48dp"/>
+                android:background="@drawable/ic_event_black_48dp"/>
 
             <EditText
                 android:id="@+id/fechaCrearAsamblea"
@@ -56,13 +58,14 @@
 
         <LinearLayout
             android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
+            android:layout_weight="0.5"
+            android:layout_width="0dip"
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/imagenHoraCrearAsamblea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_location_on_black_48dp"/>
+                android:background="@drawable/ic_access_time_black_48dp"/>
 
             <EditText
                 android:id="@+id/horaCrearAsamblea"
@@ -76,6 +79,7 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -95,7 +99,7 @@
             android:id="@+id/imagenDescripcionCrearAsamblea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_location_on_black_48dp"/>
+            android:background="@drawable/ic_subject_black_48dp"/>
 
         <EditText
             android:id="@+id/descripcionCrearAsamblea"
