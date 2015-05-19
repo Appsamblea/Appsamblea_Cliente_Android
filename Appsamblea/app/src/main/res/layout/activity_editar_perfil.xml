@@ -11,7 +11,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenEditarPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -32,7 +32,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:layout_width="0dip">
-            <ImageButton
+            <ImageView
                 android:id="@+id/imagenTelefono1EditarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -48,7 +48,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
             android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
-            <ImageButton
+            <ImageView
                 android:id="@+id/imagenTelefono2EditarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -65,10 +65,11 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenCorreo1EditarPerfil"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_email_black_48dp"/>
 
         <EditText
             android:id="@+id/correo1EditarPerfil"
@@ -81,7 +82,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenCorreo2EditarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +99,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenFacebookEditarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +116,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenTwitterEditarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -131,7 +132,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenGooglePlusEditarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -163,7 +164,7 @@ tools:context="cliente.appsamblea.activities.EditarPerfilActivity">
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <ImageButton
+        <ImageView
             android:id="@+id/imagenLocalidadEditarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
