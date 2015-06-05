@@ -2,6 +2,7 @@ package cliente.appsamblea.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class Database extends SQLiteOpenHelper{
 
     protected ContentValues registro;
+    private Cursor cursor;
 
     public Database(Context c){
         super(c, "databaseAppsamblea.db", null, 1);
@@ -21,8 +23,8 @@ public class Database extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase bd){
 
-        bd.execSQL("CREATE TABLE IF NOT EXISTS Usuario ("+
-                "usuario VARCHAR(20), pass VARCHAR(20), PRIMARY KEY (usuario, pass))");
+        bd.execSQL("CREATE TABLE IF NOT EXISTS Usuario (" +
+                "usuario VARCHAR(20), pass VARCHAR(20), id INT, PRIMARY KEY (id))");
 
         //Comentario
         //Otro comentario
@@ -65,6 +67,15 @@ public class Database extends SQLiteOpenHelper{
     public ArrayList<Asamblea> todasAsambleas(String usuario){
         ArrayList<Asamblea> resultados = new ArrayList();
         return resultados;
+    }
+
+    public String getIdUsuario(){
+        cursor = this.getReadableDatabase().rawQuery("SELECT id FROM Usuario", null);
+        if(cursor.moveToFirst()) {
+          return cursor.getString(0);
+        }
+
+        return "";
     }
 
 }

@@ -259,6 +259,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             llamarAtencion = mPasswordView;
             cancelar = true;
         }
+        //TODO Obtener el ID del usuario del servidor (Hay que hacer que, en caso de que el Login salga bien, el servidor devuelva el ID)
 
         if (cancelar) {
             // Ha habido un error. Se muestra el error y se cambia llama la atención del usuario.
