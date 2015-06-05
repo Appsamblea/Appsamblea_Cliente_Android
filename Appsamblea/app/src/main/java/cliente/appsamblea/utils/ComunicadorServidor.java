@@ -1,7 +1,5 @@
 package cliente.appsamblea.utils;
 
-import android.util.Log;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
@@ -13,19 +11,21 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Daniel on 18/05/2015.
  */
 public abstract class ComunicadorServidor {
-    public static void registrarConFacebook (final String facebookID, final String nombre, final String apellidos, final String email){
-        Thread hebra = new Thread(){
-            public void run (){
-                //Ejemplo de HTTP request
+    private static boolean loginConFacebookOk;
+
+
+
+    public static boolean registrarConFacebook (final String facebookID, final String nombre, final String apellidos, final String email){
+
+         Thread hebraRegistroCOnFacebook = new Thread(){
+            public void run(){
                 JSONObject jsonobj = new JSONObject();
                 try {
                     jsonobj.put("id", facebookID);
@@ -33,6 +33,7 @@ public abstract class ComunicadorServidor {
                     jsonobj.put("apellidos", apellidos);
                     jsonobj.put("email", email);
 
+                    //Preparar petición
                     DefaultHttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppostreq = new HttpPost("http://appsamblea-project.appspot.com/registro");
 
@@ -43,17 +44,24 @@ public abstract class ComunicadorServidor {
 
                     httppostreq.setEntity(se);
 
+                    //Enviar petición y recibir respuesta
                     HttpResponse httpresponse = httpclient.execute(httppostreq);
 
-                    String responseText = null;
+                    //Leer respuesta
+                    String mensaje = new JSONObject(EntityUtils.toString(httpresponse.getEntity())).getString("mensaje");
+                    if (mensaje.equals("existe") || mensaje.equals("creado"))
+                        loginConFacebookOk =  true;
+                    else loginConFacebookOk = false;
 
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(httpresponse.getEntity().getContent()));
 
-                    String body = "";
+                    //Lo de abjao sirve para hacer debug de páginas que llegan.
+                    /*BufferedReader rd = new BufferedReader(new InputStreamReader(httpresponse.getEntity().getContent()));
+
+                    String body;
                     while ((body = rd.readLine()) != null)
                     {
                         Log.e("HttpResponse", body);
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (ClientProtocolException e) {
@@ -65,7 +73,13 @@ public abstract class ComunicadorServidor {
                 }
             }
         };
-
-        hebra.start();
+        hebraRegistroCOnFacebook.start();
+        //Me espero a que la hebra termine de ejecutarse para devolver el atributo.
+        try {
+            hebraRegistroCOnFacebook.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return loginConFacebookOk;
     }
 }

@@ -63,6 +63,7 @@
     <string name="error_field_required">Debes rellenar este campo</string>
     <string name="error_passwords_are_not_the_same">Las contraseñas deben ser iguales</string>
     <string name="title_activity_registro">Registro</string>
+    <string name="facebook_error_on_server">Error en el servidor</string>
 
     <!--RegistroActivity-->
     <string name="confirm_password">Confirmar contraseña</string>

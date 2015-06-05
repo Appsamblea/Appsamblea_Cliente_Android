@@ -26,6 +26,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -163,8 +164,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                             apellidos = jsonObject.getString("last_name");
                             email = jsonObject.getString("email");
 
-                            //TODO ver lo que devuelve el método y actuar en consecuencia.
-                            ComunicadorServidor.registrarConFacebook(id, nombre, apellidos, email);
+                            boolean exito = ComunicadorServidor.registrarConFacebook(id, nombre, apellidos, email);
+
+                            if (exito){
+                                //Mandar a próximas asambleas
+                                enviarAProximasAsambleas();
+                                //TODO cargar datos del usuario para el perfil
+                            }else{
+                                Toast errorToast = Toast.makeText(getApplicationContext(), R.string.facebook_error_on_server, Toast.LENGTH_SHORT);
+                                errorToast.show();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -266,12 +275,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             llamarAtencion.requestFocus();
         } else {
             //Lanzar proximas asambleas
-            Intent intent = new Intent(LoginActivity.this, ProximasAsambleasActivity.class);
-            startActivity(intent);
+            enviarAProximasAsambleas();
         }
     }
 
-
+    /**
+     * Manda a la pantalla de próximas asambleas.
+     */
+    private void enviarAProximasAsambleas (){
+        Intent intent = new Intent(LoginActivity.this, ProximasAsambleasActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * Valida un email
