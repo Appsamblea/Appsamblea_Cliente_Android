@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.database.Database;
+import cliente.appsamblea.utils.ComunicadorServidor;
 
 public class CrearAsambleaActivity extends ActionBarActivity {
     private Database db;
@@ -39,7 +40,6 @@ public class CrearAsambleaActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_asamblea);
         db = new Database(contexto);
-
         contexto = this;
         nombreAsamblea = (EditText) findViewById(R.id.nombreCrearAsamblea);
         lugarAsamblea = (EditText) findViewById(R.id.lugarCrearAsamblea);
@@ -63,46 +63,36 @@ public class CrearAsambleaActivity extends ActionBarActivity {
         switch (id){
             case R.id.action_done:
                 //Se envía la asamblea al servidor
-                if(!crearAsamblea()){
-                    Toast.makeText(contexto, "No se ha podido crear la asamblea", Toast.LENGTH_SHORT).show();
+                if(nombreAsamblea.getText().toString().isEmpty() ||
+                        lugarAsamblea.getText().toString().isEmpty() ||
+                        fechaAsamblea.getText().toString().isEmpty() ||
+                        horaAsamblea.getText().toString().isEmpty() ||
+                        descripcionAsamblea.getText().toString().isEmpty()){
+                    Toast.makeText(contexto, "Rellene todos los campos para crear una asamblea", Toast.LENGTH_SHORT).show();
+                }
+                else if(!crearAsamblea()){
+                    Toast.makeText(contexto, "No se ha podido crear la asamblea, compruebe su conexión a Internet e inténtelo de nuevo", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(contexto, "Asamblea creada correctamente", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 break;
 
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     //Este método se encarga de enviar la información recogida en el Layout y de enviarla al servidor
     //Hay que lanzar una hebra para que no bloquee la interfaz de usuario.
     private boolean crearAsamblea(){
-        try{
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/crearAsamblea");
 
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            //params.add(new BasicNameValuePair("idUsuario",));
-            params.add(new BasicNameValuePair("nombreAsamblea",nombreAsamblea.getText().toString()));
-            params.add(new BasicNameValuePair("lugarAsamblea",lugarAsamblea.getText().toString()));
-            params.add(new BasicNameValuePair("fechaAsamblea",fechaAsamblea.getText().toString()));
-            params.add(new BasicNameValuePair("horaAsamblea",horaAsamblea.getText().toString()));
-            params.add(new BasicNameValuePair("descripcionAsamblea", descripcionAsamblea.getText().toString()));
-            if(abiertaAsamblea.isChecked()) {
-                params.add(new BasicNameValuePair("abiertaAsamblea", "True"));
-            }
-            else{
-                params.add(new BasicNameValuePair("abiertaAsamblea", "False"));
-            }
-            http.setEntity(new UrlEncodedFormEntity(params));
-
-            HttpResponse respuestaHttp = httpclient.execute(http);
-            String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
-        }catch (Exception e){
-            return false;
-        }
-        return true;
+        return ComunicadorServidor.CrearAsamblea(
+                nombreAsamblea.getText().toString(),
+                lugarAsamblea.getText().toString(),
+                fechaAsamblea.getText().toString(),
+                horaAsamblea.getText().toString(),
+                descripcionAsamblea.getText().toString(),
+                abiertaAsamblea.isChecked());
     }
 }

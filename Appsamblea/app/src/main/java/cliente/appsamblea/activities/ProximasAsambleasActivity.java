@@ -171,18 +171,14 @@ public class ProximasAsambleasActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Context context = this;
         //noinspection SimplifiableIfStatement
         switch(id){
             case R.id.action_add:
                 //Cambiar a Crear asamblea
-                //Intent intent = new Intent(context, CrearAsambleaActivity.class);
-                // intent.putExtra("Asamblea", item.getAsamblea());
-                //context.startActivity(intent);
+                Intent intent = new Intent(context, CrearAsambleaActivity.class);
+                context.startActivity(intent);
                 break;
             case R.id.action_search:
                 //Cambiar la Actionbar a un buscador para buscar la asamblea

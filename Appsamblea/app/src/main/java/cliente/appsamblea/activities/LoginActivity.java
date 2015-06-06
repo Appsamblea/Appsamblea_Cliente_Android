@@ -184,6 +184,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 parametros.putString("fields", "id, first_name, last_name, email");
                 request.setParameters(parametros);
                 request.executeAsync();
+
+                //Envía a próximasAsambleas
+                enviarAProximasAsambleas();
             }
 
             @Override
