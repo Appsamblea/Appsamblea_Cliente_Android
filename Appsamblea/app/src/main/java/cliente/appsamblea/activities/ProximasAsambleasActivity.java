@@ -31,10 +31,12 @@ import java.util.Date;
 
 import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Asamblea;
+import cliente.appsamblea.database.Database;
 import cliente.appsamblea.itemsManagers.itemAsamblea;
 import cliente.appsamblea.listAdapters.AsambleaListAdapter;
 
 import cliente.appsamblea.R;
+import cliente.appsamblea.utils.ComunicadorServidor;
 
 public class ProximasAsambleasActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
@@ -42,10 +44,13 @@ public class ProximasAsambleasActivity extends ActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+    private Context contexto;
+    private String idUsuario;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private ListView listView;
     private AsambleaListAdapter adapter;
     private ArrayList<itemAsamblea> proximasAsambleas;
+    private Database db;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -56,12 +61,13 @@ public class ProximasAsambleasActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proximas_asambleas);
+        contexto = this;
+        db = new Database(contexto);
+        idUsuario = db.getIdUsuario();
+        //proximasAsambleas = ComunicadorServidor.ProximasAsambles(idUsuario);
 
-        /*
-        * proximasAsambleas = LISTA DE LAS PRÓXIMAS ASAMBLEAS OBTENIDA DE LA BASE DE DATOS*/
-
-        /**/
         //Listado de prueba
+
 
         proximasAsambleas = new ArrayList <itemAsamblea>();
 

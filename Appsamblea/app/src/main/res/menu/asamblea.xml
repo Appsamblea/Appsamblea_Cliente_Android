@@ -16,6 +16,8 @@
         android:title="@string/title_activity_estadisticas"/>
     <item android:id="@+id/abandonar_asamblea"
         android:title="@string/title_activity_abandonar_asamblea"/>
+    <item android:id="@+id/eliminar_asamblea"
+        android:title="@string/eliminarAsamblea"/>
 </menu>
 
 

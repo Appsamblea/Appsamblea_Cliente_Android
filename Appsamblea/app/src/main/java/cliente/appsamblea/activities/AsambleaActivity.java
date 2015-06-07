@@ -1,6 +1,7 @@
 package cliente.appsamblea.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -19,16 +21,22 @@ import com.google.android.gms.analytics.Tracker;
 import cliente.appsamblea.R;
 import cliente.appsamblea.application.AppsambleaApplication;
 import cliente.appsamblea.database.Asamblea;
+import cliente.appsamblea.database.Database;
+import cliente.appsamblea.utils.ComunicadorServidor;
 
 public class AsambleaActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private Context contexto;
     // Elementos de la UI
     private TextView mOrganizacionView;
     private TextView mLugarView;
     private TextView mFechaView;
     private TextView mHoraView;
     private TextView mDescripcionView;
+    private String idAsamblea;
+    private String idUsuario;
+    private Database db;
 
 
     /**
@@ -45,6 +53,9 @@ public class AsambleaActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asamblea);
+        contexto = this;
+        db = new Database(contexto);
+        idUsuario = db.getIdUsuario();
 
         //Cargar la asamblea del intent.
         Asamblea asamblea = (Asamblea) getIntent().getSerializableExtra("Asamblea");
@@ -144,6 +155,15 @@ public class AsambleaActivity extends ActionBarActivity
                 intent = new Intent (AsambleaActivity.this, TurnosPalabraActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.eliminar_asamblea:
+                //TODO obetener el id de la asamblea
+                if(ComunicadorServidor.EliminarAsamblea(idUsuario, idAsamblea)) {
+                    return true;
+                }
+                else{
+                    Toast.makeText(contexto, "No se ha podido eliminar la asamblea. Quizás usted no sea el creador. En caso contrario, compruebe su conexión a Internet.", Toast.LENGTH_LONG).show();
+                    return true;
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }

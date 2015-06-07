@@ -17,7 +17,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import cliente.appsamblea.database.Asamblea;
 
 /**
  * Created by Daniel on 18/05/2015.
@@ -129,7 +132,6 @@ public abstract class ComunicadorServidor {
                   e.printStackTrace();
                   todoBien = false;
               }
-
           }
       };
       thread.run();
@@ -142,4 +144,88 @@ public abstract class ComunicadorServidor {
       return todoBien;
   }
 
+
+  //Se reciben las próximas asambleas para un usuario
+  //*Si ocurre alguna excepción, la lista de asambleas se vacía
+  public static ArrayList<Asamblea> ProximasAsambles(final String idUsuario){
+      final ArrayList<Asamblea> asambleas = new ArrayList();
+      Thread thread = new Thread() {
+          public void run() {
+              JSONObject jsonobj = new JSONObject();
+              try{
+                  HttpClient httpclient = new DefaultHttpClient();
+                  HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/proximasAsambleas");
+
+                  jsonobj.put("idUsuario", idUsuario);
+                  StringEntity se = new StringEntity(jsonobj.toString());
+
+                  se.setContentType("application/json;charset=UTF-8");
+                  se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8"));
+
+                  http.setEntity(se);
+
+                  HttpResponse respuestaHttp = httpclient.execute(http);
+                  String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
+                  //TODO Manejar la respuesta y almacenarla en el ArrayList asambleas
+
+              }catch (Exception e){
+                  e.printStackTrace();
+                  asambleas.clear();
+              }
+          }
+      };
+      thread.run();
+      try {
+          thread.join();
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+          asambleas.clear();
+      }
+      return asambleas;
+  }
+
+  //Se elimina una asamblea
+  public static boolean EliminarAsamblea(final String idUsuario, final String idAsamblea){
+      todoBien = true;
+
+      Thread thread = new Thread() {
+          public void run() {
+              JSONObject jsonobj = new JSONObject();
+              try{
+                  HttpClient httpclient = new DefaultHttpClient();
+                  HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/eliminarAsamblea");
+
+                  jsonobj.put("idUsuario", idUsuario);
+                  jsonobj.put("isAsamblea", idAsamblea);
+
+                  StringEntity se = new StringEntity(jsonobj.toString());
+
+                  se.setContentType("application/json;charset=UTF-8");
+                  se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8"));
+
+                  http.setEntity(se);
+
+                  HttpResponse respuestaHttp = httpclient.execute(http);
+                  String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
+                  //TODO manejar la respuesta
+                  if(respuesta.equals("No es el creador")){
+                      todoBien = false;
+                  }
+
+              }catch (Exception e){
+                  e.printStackTrace();
+                  todoBien = false;
+              }
+
+          }
+      };
+      thread.run();
+      try {
+          thread.join();
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+          todoBien = false;
+      }
+      return todoBien;
+  }
 }
