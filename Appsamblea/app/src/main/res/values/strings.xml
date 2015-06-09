@@ -95,6 +95,8 @@
     <string name="saved_email">email</string>
     <string name="saved_password">password</string>
     <string name="title_activity_votaciones">Votaciones</string>
+    <string name="usuario_id">usuarioID</string>
+
 
     <!-- Grupo -->
     <string name="grupo_descripcion">Descripción</string>

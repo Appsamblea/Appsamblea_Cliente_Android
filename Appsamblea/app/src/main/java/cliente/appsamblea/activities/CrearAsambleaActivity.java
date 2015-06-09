@@ -1,6 +1,7 @@
 package cliente.appsamblea.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -86,8 +87,10 @@ public class CrearAsambleaActivity extends ActionBarActivity {
     //Este método se encarga de enviar la información recogida en el Layout y de enviarla al servidor
     //Hay que lanzar una hebra para que no bloquee la interfaz de usuario.
     private boolean crearAsamblea(){
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
 
         return ComunicadorServidor.CrearAsamblea(
+                sharedPreferences.getString(getString(R.string.usuario_id), ""),
                 nombreAsamblea.getText().toString(),
                 lugarAsamblea.getText().toString(),
                 fechaAsamblea.getText().toString(),

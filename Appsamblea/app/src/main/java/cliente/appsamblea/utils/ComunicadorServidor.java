@@ -1,5 +1,9 @@
 package cliente.appsamblea.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -15,11 +19,14 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import cliente.appsamblea.R;
 import cliente.appsamblea.database.Asamblea;
 
 /**
@@ -27,8 +34,13 @@ import cliente.appsamblea.database.Asamblea;
  */
 public abstract class ComunicadorServidor {
     private static boolean loginConFacebookOk;
-    private static boolean todoBien;
 
+    public static String getUsuarioID() {
+        return usuarioID;
+    }
+
+    private static String usuarioID;
+    private static boolean todoBien;
     public static boolean registrarConFacebook (final String facebookID, final String nombre, final String apellidos, final String email){
 
          Thread hebraRegistroCOnFacebook = new Thread(){
@@ -54,10 +66,15 @@ public abstract class ComunicadorServidor {
                     //Enviar petici�n y recibir respuesta
                     HttpResponse httpresponse = httpclient.execute(httppostreq);
 
+                    JSONObject respuesta = new JSONObject(EntityUtils.toString(httpresponse.getEntity()));
+
                     //Leer respuesta
-                    String mensaje = new JSONObject(EntityUtils.toString(httpresponse.getEntity())).getString("mensaje");
-                    if (mensaje.equals("existe") || mensaje.equals("creado"))
-                        loginConFacebookOk =  true;
+                    String mensaje = respuesta.getString("mensaje");
+                    if (mensaje.equals("existe") || mensaje.equals("creado")) {
+                        loginConFacebookOk = true;
+                        //Guardar el ID del usuario
+                        usuarioID = respuesta.getString("id");
+                    }
                     else loginConFacebookOk = false;
 
 
@@ -91,7 +108,9 @@ public abstract class ComunicadorServidor {
     }
 
   //Se envía una petición al servidor para crear una asamblea
-  public static boolean CrearAsamblea(final String nombreAsamblea,
+  public static boolean CrearAsamblea(
+                                      final String idUsuario,
+                                      final String nombreAsamblea,
                                       final String lugarAsamblea,
                                       final String fechaAsamblea,
                                       final String horaAsamblea,
@@ -106,7 +125,7 @@ public abstract class ComunicadorServidor {
                   HttpClient httpclient = new DefaultHttpClient();
                   HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/crearAsamblea");
 
-                  jsonobj.put("idUsuario", "");
+                  jsonobj.put("idUsuario", idUsuario);
                   jsonobj.put("nombreAsamblea",nombreAsamblea);
                   jsonobj.put("lugarAsamblea",lugarAsamblea);
                   jsonobj.put("fechaAsamblea",fechaAsamblea);
@@ -126,7 +145,17 @@ public abstract class ComunicadorServidor {
                   http.setEntity(se);
 
                   HttpResponse respuestaHttp = httpclient.execute(http);
-                  String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
+                  //String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(respuestaHttp.getEntity().getContent()));
+
+                    String body;
+                    while ((body = rd.readLine()) != null)
+                    {
+                        Log.e("HttpResponse", body);
+                    }
+                  //Log.d("resp crearasamblea", respuesta);
+
+
 
               }catch (Exception e){
                   e.printStackTrace();

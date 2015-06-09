@@ -73,6 +73,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     //Callback manager, necesario para el login con Facebook
     private CallbackManager callbackManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Inicializar el SDK de Facebook, es necesario hacerlo antes del setContentView
@@ -80,6 +81,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
+
+        //Si hay un usuarioID guardado, mandar a proximas asambleas
+        if (!sharedPreferences.getString(getString(R.string.usuario_id), "").isEmpty())
+            enviarAProximasAsambleas();
 
         //Sacar la key hash de Facebook por log para ponerla en Facebook developers.
         //TODO esto va fuera en producción.
@@ -101,7 +109,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         credencialesFalsas.put("prueba@appsamblea.com", "1234");
         credencialesFalsas.put("a@a.com", "q");
         //Añadir a las credenciales falsas lo que haya creado el usuario anteriormente
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
         String emailSharedPreferences = sharedPreferences.getString(getString(R.string.saved_email), "");
         String passwordSharedPreferences = sharedPreferences.getString(getString(R.string.saved_password), "");
 
@@ -169,7 +176,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                             if (exito){
                                 //Mandar a próximas asambleas
                                 enviarAProximasAsambleas();
-                                //TODO cargar datos del usuario para el perfil
+                                //TODO cargar el resto de datos del usuario para el perfil
+                                SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPrefs.edit();
+
+                                 //Poner valores
+                                editor.putString(getString(R.string.usuario_id), ComunicadorServidor.getUsuarioID());
+
+                                //Guardar valores
+                                editor.commit();
                             }else{
                                 Toast errorToast = Toast.makeText(getApplicationContext(), R.string.facebook_error_on_server, Toast.LENGTH_SHORT);
                                 errorToast.show();
