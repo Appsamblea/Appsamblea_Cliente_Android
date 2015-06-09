@@ -134,7 +134,7 @@ public abstract class ComunicadorServidor {
               }
           }
       };
-      thread.run();
+      thread.start();
       try {
           thread.join();
       } catch (InterruptedException e) {
@@ -174,7 +174,7 @@ public abstract class ComunicadorServidor {
               }
           }
       };
-      thread.run();
+      thread.start();
       try {
           thread.join();
       } catch (InterruptedException e) {
@@ -219,7 +219,7 @@ public abstract class ComunicadorServidor {
 
           }
       };
-      thread.run();
+      thread.start();
       try {
           thread.join();
       } catch (InterruptedException e) {
