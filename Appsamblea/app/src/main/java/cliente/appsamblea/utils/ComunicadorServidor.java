@@ -251,7 +251,7 @@ public abstract class ComunicadorServidor {
                   HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/eliminarAsamblea");
 
                   jsonobj.put("idUsuario", idUsuario);
-                  jsonobj.put("isAsamblea", idAsamblea);
+                  jsonobj.put("idAsamblea", idAsamblea);
 
                   StringEntity se = new StringEntity(jsonobj.toString());
 
