@@ -112,8 +112,11 @@ public abstract class ComunicadorServidor {
                                       final String idUsuario,
                                       final String nombreAsamblea,
                                       final String lugarAsamblea,
-                                      final String fechaAsamblea,
-                                      final String horaAsamblea,
+                                      final int diaAsamblea,
+                                      final int mesAsamblea,
+                                      final int anioAsamblea,
+                                      final int horaAsamblea,
+                                      final int minutoAsamblea,
                                       final String descripcionAsamblea,
                                       final boolean abiertaAsamblea){
      todoBien = true;
@@ -125,17 +128,20 @@ public abstract class ComunicadorServidor {
                   HttpClient httpclient = new DefaultHttpClient();
                   HttpPost http = new HttpPost("http://appsamblea-project.appspot.com/crearAsamblea");
 
-                  jsonobj.put("idUsuario", idUsuario);
-                  jsonobj.put("nombreAsamblea",nombreAsamblea);
-                  jsonobj.put("lugarAsamblea",lugarAsamblea);
-                  jsonobj.put("fechaAsamblea",fechaAsamblea);
-                  jsonobj.put("horaAsamblea",horaAsamblea);
-                  jsonobj.put("descripcionAsamblea",descripcionAsamblea);
+                  jsonobj.put("idCreador", idUsuario);
+                  jsonobj.put("nombre",nombreAsamblea);
+                  jsonobj.put("lugar",lugarAsamblea);
+                  jsonobj.put("dia",diaAsamblea);
+                  jsonobj.put("mes",mesAsamblea);
+                  jsonobj.put("anio",anioAsamblea);
+                  jsonobj.put("hora",horaAsamblea);
+                  jsonobj.put("minuto",minutoAsamblea);
+                  jsonobj.put("descripcion",descripcionAsamblea);
                   if(abiertaAsamblea){
-                      jsonobj.put("abiertaAsamblea","True");
+                      jsonobj.put("esAbierta","True");
                   }
                   else{
-                      jsonobj.put("abiertaAsamblea","False");
+                      jsonobj.put("esAbierta","False");
                   }
                   StringEntity se = new StringEntity(jsonobj.toString());
 

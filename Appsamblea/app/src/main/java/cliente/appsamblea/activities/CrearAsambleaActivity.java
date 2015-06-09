@@ -1,14 +1,23 @@
 package cliente.appsamblea.activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -31,10 +40,13 @@ public class CrearAsambleaActivity extends ActionBarActivity {
     private Context contexto;
     private EditText nombreAsamblea;
     private EditText lugarAsamblea;
-    private EditText fechaAsamblea;
-    private EditText horaAsamblea;
+    private static EditText fechaAsamblea;
+    private static EditText horaAsamblea;
     private EditText descripcionAsamblea;
     private CheckBox abiertaAsamblea;
+
+    private static int hora, minuto;
+    private static int dia, mes, anio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +57,24 @@ public class CrearAsambleaActivity extends ActionBarActivity {
         nombreAsamblea = (EditText) findViewById(R.id.nombreCrearAsamblea);
         lugarAsamblea = (EditText) findViewById(R.id.lugarCrearAsamblea);
         fechaAsamblea = (EditText) findViewById(R.id.fechaCrearAsamblea);
+
+        fechaAsamblea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment fragment = new DatePickerFragment();
+                fragment.show(getFragmentManager(), "DatePicker");
+            }
+        });
+
         horaAsamblea = (EditText) findViewById(R.id.horaCrearAsamblea);
+
+        horaAsamblea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment fragment = new TimePickerFragment();
+                fragment.show(getFragmentManager(), "TimePicker");
+            }
+        });
         descripcionAsamblea = (EditText) findViewById(R.id.descripcionCrearAsamblea);
         abiertaAsamblea = (CheckBox) findViewById(R.id.abiertaCrearAsamblea);
 
@@ -93,9 +122,39 @@ public class CrearAsambleaActivity extends ActionBarActivity {
                 sharedPreferences.getString(getString(R.string.usuario_id), ""),
                 nombreAsamblea.getText().toString(),
                 lugarAsamblea.getText().toString(),
-                fechaAsamblea.getText().toString(),
-                horaAsamblea.getText().toString(),
+                dia, mes, anio,
+                hora, minuto,
                 descripcionAsamblea.getText().toString(),
                 abiertaAsamblea.isChecked());
+    }
+
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new TimePickerDialog(getActivity(), this, hora, minuto,
+                    DateFormat.is24HourFormat(getActivity()));
+        }
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hora = hourOfDay;
+            minuto = minute;
+            horaAsamblea.setText(String.valueOf(hora) + ":" + String.valueOf(minuto));
+        }
+    }
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Time ahora = new Time();
+            ahora.setToNow();
+            return new DatePickerDialog(getActivity(), this, ahora.year, ahora.month, ahora.monthDay);
+        }
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int
+                dayOfMonth) {
+            anio = year;
+            mes = monthOfYear;
+            dia = dayOfMonth;
+            fechaAsamblea.setText(String.valueOf(dia) + "/" + String.valueOf(mes) + '/' + String.valueOf(anio));
+        }
     }
 }
