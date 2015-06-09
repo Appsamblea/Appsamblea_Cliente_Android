@@ -17,6 +17,7 @@ public class Asamblea implements Serializable{
     private String descripcion;
     private boolean es_abierta;
     private String url_streaming;
+    private String url_asamblea;
     //TODO el creador deberá de ser un usuario.
     private String creador;
     private String organizacion;
@@ -109,6 +110,14 @@ public class Asamblea implements Serializable{
 
     public void setUrl_streaming(String url_streaming) {
         this.url_streaming = url_streaming;
+    }
+
+    public String getUrl_asamblea() {
+        return url_asamblea;
+    }
+
+    public void setUrl_asamblea(String url_asamblea) {
+        this.url_asamblea = url_asamblea;
     }
 
     public String getCreador() {
