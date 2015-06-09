@@ -16,6 +16,7 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +26,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.database.Asamblea;
@@ -203,6 +205,23 @@ public abstract class ComunicadorServidor {
                   HttpResponse respuestaHttp = httpclient.execute(http);
                   String respuesta = EntityUtils.toString(respuestaHttp.getEntity());
                   //TODO Manejar la respuesta y almacenarla en el ArrayList asambleas
+                  JSONArray jsonArray = new JSONArray(respuesta);
+                  JSONObject jsonObject;
+                  Asamblea asamblea;
+                  for(int i= 0; i < jsonArray.length(); i++){
+                      jsonObject = jsonArray.getJSONObject(i);
+                      asamblea = new Asamblea();
+                      asamblea.setNombre(jsonObject.getString("nombre"));
+                      asamblea.setFecha(new Date(jsonObject.getString("fecha")));
+                      //TODO meter la hora
+                      asamblea.setCreador(jsonObject.getString("creador"));
+                      //TODO devolver el nombre del creador desde el servidor (Aquí está el ID)
+                      asamblea.setDescripcion(jsonObject.getString("descripcion"));
+                      asamblea.setUrl_streaming(jsonObject.getString("url_streaming"));
+                      asamblea.setEs_abierta(jsonObject.getBoolean("es_abierta"));
+                      //TODO falta por añadir a asamblea el atributo "url_asamblea"
+                      asambleas.add(asamblea);
+                  }
 
               }catch (Exception e){
                   e.printStackTrace();
