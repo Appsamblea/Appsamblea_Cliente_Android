@@ -131,12 +131,15 @@ public abstract class ComunicadorServidor {
                   jsonobj.put("idCreador", idUsuario);
                   jsonobj.put("nombre",nombreAsamblea);
                   jsonobj.put("lugar",lugarAsamblea);
-                  jsonobj.put("dia",diaAsamblea);
-                  jsonobj.put("mes",mesAsamblea);
-                  jsonobj.put("anio",anioAsamblea);
-                  jsonobj.put("hora",horaAsamblea);
-                  jsonobj.put("minuto",minutoAsamblea);
+                  jsonobj.put("dia",String.valueOf(diaAsamblea));
+                  jsonobj.put("mes",String.valueOf(mesAsamblea));
+                  jsonobj.put("anio",String.valueOf(anioAsamblea));
+                  jsonobj.put("hora",String.valueOf(horaAsamblea));
+                  jsonobj.put("minuto",String.valueOf(minutoAsamblea));
                   jsonobj.put("descripcion",descripcionAsamblea);
+
+                  Log.d("JSON", jsonobj.toString());
+
                   if(abiertaAsamblea){
                       jsonobj.put("esAbierta","True");
                   }
@@ -160,8 +163,6 @@ public abstract class ComunicadorServidor {
                         Log.e("HttpResponse", body);
                     }
                   //Log.d("resp crearasamblea", respuesta);
-
-
 
               }catch (Exception e){
                   e.printStackTrace();
