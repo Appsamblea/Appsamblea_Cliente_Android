@@ -69,33 +69,32 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         idUsuario = db.getIdUsuario();
         ArrayList<Asamblea> asambleas = ComunicadorServidor.ProximasAsambles(idUsuario);
         proximasAsambleas = new ArrayList();
+
         for(Asamblea a: asambleas){
             itemAsamblea item = new itemAsamblea(a);
             proximasAsambleas.add(item);
         }
 
-        //Listado de prueba
-        /*
-        proximasAsambleas = new ArrayList <itemAsamblea>();
+        //Listado de prueba si la lista está vacía:
+        if(proximasAsambleas.isEmpty()) {
+            //Crear 3 asambleas de prueba
+            Asamblea pruebaAsamblea1, pruebaAsamblea2, pruebaAsamblea3;
+            Date fecha = new Date();
+            pruebaAsamblea1 = new Asamblea("Asamblea 1", "Organizacion 1", fecha, 0, "Una asamblea de prueba", "Palacio de Congresos de Madrid");
+            pruebaAsamblea2 = new Asamblea("Asamblea 2", "Organizacion 2", fecha, 1, "Otra asamblea de prueba", "Palacio de Congresos de Granada");
+            pruebaAsamblea3 = new Asamblea("Asamblea 3", "Organizacion 3", fecha, 2, "Y otra asamblea de prueba", "La casa de Paco");
 
-        //Crear 3 asambleas de prueba
-        Asamblea pruebaAsamblea1, pruebaAsamblea2, pruebaAsamblea3;
-        Date fecha = new Date();
-        pruebaAsamblea1 = new Asamblea("Asamblea 1", "Organizacion 1", fecha, 0, "Una asamblea de prueba", "Palacio de Congresos de Madrid");
-        pruebaAsamblea2 = new Asamblea("Asamblea 2", "Organizacion 2", fecha, 1, "Otra asamblea de prueba", "Palacio de Congresos de Granada");
-        pruebaAsamblea3 = new Asamblea("Asamblea 3", "Organizacion 3", fecha, 2, "Y otra asamblea de prueba", "La casa de Paco");
+            //Crear 3 items de asamblea
+            itemAsamblea ia1, ia2, ia3;
+            ia1 = new itemAsamblea(pruebaAsamblea1);
+            ia2 = new itemAsamblea(pruebaAsamblea2);
+            ia3 = new itemAsamblea(pruebaAsamblea3);
 
-        //Crear 3 items de asamblea
-        itemAsamblea ia1, ia2, ia3;
-        ia1 = new itemAsamblea(pruebaAsamblea1);
-        ia2 = new itemAsamblea(pruebaAsamblea2);
-        ia3 = new itemAsamblea(pruebaAsamblea3);
-
-        //Añadir los items a la lista de asambleas
-        proximasAsambleas.add (ia1);
-        proximasAsambleas.add (ia2);
-        proximasAsambleas.add (ia3);
-        */
+            //Añadir los items a la lista de asambleas
+            proximasAsambleas.add(ia1);
+            proximasAsambleas.add(ia2);
+            proximasAsambleas.add(ia3);
+        }
         //Poner un adaptador a la lista
         listView = (ListView) findViewById(R.id.listaProximasAsambleas);
         adapter = new AsambleaListAdapter(this ,proximasAsambleas);
