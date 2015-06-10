@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -63,12 +64,18 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         setContentView(R.layout.activity_proximas_asambleas);
         contexto = this;
         db = new Database(contexto);
+
+        //Se obtienen las próximas asambleas
         idUsuario = db.getIdUsuario();
-        //proximasAsambleas = ComunicadorServidor.ProximasAsambles(idUsuario);
+        ArrayList<Asamblea> asambleas = ComunicadorServidor.ProximasAsambles(idUsuario);
+        proximasAsambleas = new ArrayList();
+        for(Asamblea a: asambleas){
+            itemAsamblea item = new itemAsamblea(a);
+            proximasAsambleas.add(item);
+        }
 
         //Listado de prueba
-
-
+        /*
         proximasAsambleas = new ArrayList <itemAsamblea>();
 
         //Crear 3 asambleas de prueba
@@ -88,7 +95,7 @@ public class ProximasAsambleasActivity extends ActionBarActivity
         proximasAsambleas.add (ia1);
         proximasAsambleas.add (ia2);
         proximasAsambleas.add (ia3);
-
+        */
         //Poner un adaptador a la lista
         listView = (ListView) findViewById(R.id.listaProximasAsambleas);
         adapter = new AsambleaListAdapter(this ,proximasAsambleas);

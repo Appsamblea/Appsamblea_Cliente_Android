@@ -53,6 +53,8 @@ import java.util.Map;
 
 import cliente.appsamblea.R;
 import cliente.appsamblea.application.AppsambleaApplication;
+import cliente.appsamblea.database.Database;
+import cliente.appsamblea.database.Usuario;
 import cliente.appsamblea.utils.ComunicadorServidor;
 
 
@@ -73,6 +75,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     //Callback manager, necesario para el login con Facebook
     private CallbackManager callbackManager;
 
+    //Database
+    private Database db;
+
+    private Context contexto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +88,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        contexto = this;
+        db = new Database(contexto);
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
 
@@ -174,8 +182,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                             boolean exito = ComunicadorServidor.registrarConFacebook(id, nombre, apellidos, email);
 
                             if (exito){
-                                //Mandar a próximas asambleas
-                                enviarAProximasAsambleas();
                                 //TODO cargar el resto de datos del usuario para el perfil
                                 SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.preference_key_file), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -185,6 +191,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
                                 //Guardar valores
                                 editor.commit();
+
+                                Usuario user = new Usuario();
+                                user.setNombre(null);
+                                user.setPassword(null);
+                                user.setId(Integer.parseInt(id));
+
+                                db.insertarUsuario(user);
+
+                                //Mandar a próximas asambleas
+                                enviarAProximasAsambleas();
+
                             }else{
                                 Toast errorToast = Toast.makeText(getApplicationContext(), R.string.facebook_error_on_server, Toast.LENGTH_SHORT);
                                 errorToast.show();

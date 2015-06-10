@@ -15,6 +15,7 @@ public class Database extends SQLiteOpenHelper{
 
     protected ContentValues registro;
     private Cursor cursor;
+    private SQLiteDatabase db;
 
     public Database(Context c){
         super(c, "databaseAppsamblea.db", null, 1);
@@ -22,8 +23,8 @@ public class Database extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase bd){
-
-        bd.execSQL("CREATE TABLE IF NOT EXISTS Usuario (" +
+        db = bd;
+        db.execSQL("CREATE TABLE IF NOT EXISTS Usuario (" +
                 "usuario VARCHAR(20), pass VARCHAR(20), id INT, PRIMARY KEY (id))");
 
         //Comentario
@@ -74,8 +75,30 @@ public class Database extends SQLiteOpenHelper{
         if(cursor.moveToFirst()) {
           return cursor.getString(0);
         }
+        else{
+            return null;
+        }
+    }
 
-        return "";
+    /*Registra las características del usuario en la base de datos local.
+    * En caso de que ya se haya creado otro usuario con anterioridad, se elimina.
+    */
+    public boolean insertarUsuario(Usuario user){
+        db.delete("Usuario", "", new String[]{});
+        registro = new ContentValues();
+        registro.put("id", user.getId() );
+        if(user.getNombre() != null) {
+            registro.put("usuario", user.getNombre());
+        }
+        if(user.getPassword() != null) {
+            registro.put("password", user.getPassword());
+        }
+        if(db.insert("Usuario", null, registro) == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
 }
