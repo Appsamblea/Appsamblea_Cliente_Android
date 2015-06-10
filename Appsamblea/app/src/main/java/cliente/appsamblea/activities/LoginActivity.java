@@ -165,8 +165,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mFacebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Log.d("OnSuccess", "OnSuccess");
                 AccessToken token = loginResult.getAccessToken();
-
                 //Crear una llamada asincrona con Graph
                 GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -212,6 +212,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     }
                 });
 
+                //Log.d("Registro Facebook", "Registro Facebook");
+
                 Bundle parametros = new Bundle();
                 parametros.putString("fields", "id, first_name, last_name, email");
                 request.setParameters(parametros);
@@ -230,6 +232,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             public void onError(FacebookException e) {
                 Log.e("Facebook Login", "Error!");
             }
+
         });
 
 
